@@ -14,8 +14,7 @@ namespace BookLover.Services
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
         private readonly Guid _userId;
 
-
-        
+      
         private Random rand = new Random();
 
         public BookService(Guid userId)

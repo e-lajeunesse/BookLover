@@ -66,5 +66,21 @@ namespace BookLover.Services
 
             return bookReview;
         }
+
+        public bool UpdateBookReview(BookReviewEdit model)
+        {
+            BookReview reviewToEdit = _context.BookReviews.Single(br => br.ReviewId == model.ReviewId);
+            reviewToEdit.ReviewText = model.ReviewText;
+            reviewToEdit.ReviewTitle = model.ReviewTitle;
+            reviewToEdit.BookRating = model.BookRating;
+            return _context.SaveChanges() == 1;
+        }
+
+        public bool DeleteBookReview(int reviewId)
+        {
+            BookReview reviewToDelete = _context.BookReviews.Single(br => br.ReviewId == reviewId);
+            _context.BookReviews.Remove(reviewToDelete);
+            return _context.SaveChanges() == 1;
+        }
     }
 }
