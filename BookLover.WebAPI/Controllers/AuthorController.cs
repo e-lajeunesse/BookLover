@@ -40,11 +40,22 @@ namespace BookLover.WebAPI.Controllers
                 return Ok();
             }
 
-            public IHttpActionResult Get(int AuthorId)
+            public IHttpActionResult GetAuthorById(int AuthorId)
             {
                 AuthorServices authorService = CreateAuthorService();
                 var author = authorService.GetAuthorById(AuthorId);
                 return Ok(author);
             }
+
+            public IHttpActionResult DeleteAuthor(int Authorid)
+        {
+                var service = CreateAuthorService();
+
+                if (!service.DeleteAuthor(Authorid))
+                return InternalServerError();
+
+                return Ok();
         }
+
+    }
 }
