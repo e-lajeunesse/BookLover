@@ -14,6 +14,6 @@ namespace BookLover.Models.BookModels
         public string Description { get; set; }
         public double AverageRating { get; set; }
 
-        public BookshelfDisplay ReccomendedBooks { get; set; }
+        public BookshelfDisplay RecommendedBooks { get; set; }
     }
 }

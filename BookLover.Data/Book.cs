@@ -21,8 +21,9 @@ namespace BookLover.Data
         [MaxLength(500)]
         public string Description { get; set; }
         public double AverageRating { get; set; }
+
         public virtual List<BookReview> Reviews { get; set; }
-        public virtual List<Bookshelf> Bookshelves { get; set; }
+        public virtual List<Bookshelf> Bookshelves { get; set; } 
 
         /*        [ForeignKey(nameof(Author))]
                 public int AuthorId { get; set; }
