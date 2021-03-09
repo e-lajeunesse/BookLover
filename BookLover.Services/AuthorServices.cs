@@ -59,14 +59,14 @@ namespace BookLover.Services
             }
         }
 
-        public AuthorDetail GetAuthorById(int AuthorId)
+        public AuthorDetail GetAuthorById(int authorId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == AuthorId && a.UserId == _userId);
+                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
                 return
                     new AuthorDetail
                     {
@@ -90,8 +90,25 @@ namespace BookLover.Services
 
                 ctx.Authors.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
-    }
+
+        public bool UpdateAuthor(AuthorEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Authors
+                    .Single(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
+
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.Description = model.Description;
+
+                return ctx.SaveChanges() > 0;
+
+            }
+        }
+    }          
 }

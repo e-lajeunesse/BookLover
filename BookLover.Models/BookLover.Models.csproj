@@ -60,6 +60,7 @@
     <Compile Include="BookReviewModels\BookReviewListItem.cs" />
     <Compile Include="AuthorCreate.cs" />
     <Compile Include="AuthorDetail.cs" />
+    <Compile Include="AuthorEdit.cs" />
     <Compile Include="AuthorListItems.cs" />
     <Compile Include="BookModels\BookCreate.cs" />
     <Compile Include="BookModels\BookDetail.cs" />
