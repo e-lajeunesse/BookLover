@@ -16,8 +16,7 @@ namespace BookLover.Data
         [Required]
         public string Title { get; set; }
 
-        [ForeignKey(nameof(Book))]
-        [MaxLength(10)]
+        [ForeignKey(nameof(Book))]        
         public List<int> BookIds { get; set; }
         public virtual List<Book> Books { get; set; }
     }

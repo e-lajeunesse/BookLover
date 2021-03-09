@@ -12,10 +12,7 @@ namespace BookLover.Services
     public class BookService
     {
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
-        private readonly Guid _userId;
-
-
-        
+        private readonly Guid _userId;        
         private Random rand = new Random();
 
         public BookService(Guid userId)
@@ -49,35 +46,17 @@ namespace BookLover.Services
             }).ToList();
         }
 
-
-
         public BookDetail GetBookById(int id)
         {
             Book bookToGet = _context.Books.Single(b => b.BookId == id);
-
-            Bookshelf reccomendations = null;
-            if (bookToGet.Bookshelves.Count > 0)
-            {
-                reccomendations = bookToGet.Bookshelves[rand.Next(0, bookToGet.Bookshelves.Count)];
-            }
-
+                        
             BookDetail book = new BookDetail()
             {
                 BookId = bookToGet.BookId,
                 Title = bookToGet.Title,
                 Description = bookToGet.Description,
                 AverageRating = bookToGet.AverageRating,
-                ReccomendedBooks = (reccomendations == null) ? null : new BookshelfDisplay
-                {
-                    BookshelfId = reccomendations.BookshelfId,
-                    Title = reccomendations.Title,
-                    Books = reccomendations.Books.Select(b => new BookshelfBookDisplay
-                    {
-                        BookId = b.BookId,
-                        Title = b.Title
-                    }).ToList()
-                }
-
+                RecommendedBooks = GetRecommendedBooks(bookToGet)
             };
             return book;
         }
@@ -94,9 +73,33 @@ namespace BookLover.Services
                 BookId = bookToGet.BookId,
                 Title = bookToGet.Title,
                 Description = bookToGet.Description,
-                AverageRating = bookToGet.AverageRating
+                AverageRating = bookToGet.AverageRating,
+                RecommendedBooks = GetRecommendedBooks(bookToGet)
             };
             return book;
+        }
+
+        //Method to get recommended books for GetBook by Title/Id methods
+        public BookshelfDisplay GetRecommendedBooks(Book model)
+        {
+            Bookshelf recommendations = null;
+            if (model.Bookshelves.Count > 0)
+            {
+                recommendations = model.Bookshelves[rand.Next(0, model.Bookshelves.Count)];
+            }
+
+            BookshelfDisplay recommendedBooks = (recommendations == null) ? null : new BookshelfDisplay
+            {
+                BookshelfId = recommendations.BookshelfId,
+                Title = recommendations.Title,
+                Books = recommendations.Books.Select(b => new BookshelfBookDisplay
+                {
+                    BookId = b.BookId,
+                    Title = b.Title
+                }).ToList()
+            };
+
+            return recommendedBooks;
         }
 
         public bool UpdateBook(BookEdit model)
