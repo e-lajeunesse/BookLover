@@ -27,8 +27,8 @@ namespace BookLover.Services
                 ReviewText = model.ReviewText,
                 BookRating = model.BookRating,
                 ReviewTitle = model.ReviewTitle,
+                BookId = model.BookId,
                 CreatedReview = DateTimeOffset.Now
-                // BookId = model.BookId
             };
 
             _context.BookReviews.Add(bookReview);
@@ -44,8 +44,8 @@ namespace BookLover.Services
                 ReviewTitle = br.ReviewTitle,
                 ReviewText = br.ReviewText,
                 CreatedReview = br.CreatedReview,
-                BookRating = br.BookRating
-                // BookId = br.BookId
+                BookRating = br.BookRating,
+                BookId = br.BookId
             }).ToList();
 
             return bookReviewListItems;
@@ -60,7 +60,7 @@ namespace BookLover.Services
                 ReviewText = reviewToGet.ReviewText,
                 CreatedReview = reviewToGet.CreatedReview,
                 ReviewTitle = reviewToGet.ReviewTitle,
-                // BookId = entity.BookId,
+                BookId = reviewToGet.BookId,
                 BookRating = reviewToGet.BookRating
             };
 
