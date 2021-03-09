@@ -22,19 +22,8 @@ namespace BookLover.Data
         public string Description { get; set; }
         public double AverageRating { get; set; }
 
-
-
-        //public List<BookReview> Reviews { get; set; }
-        //public List<Bookshelf> Bookshelves { get; set; }
-
-        /*        [ForeignKey(nameof(Author))]
-                public int AuthorId { get; set; }
-                public virtual Author Author { get; set; }*/
-
-
-
-        //public virtual List<BookReviewReview> Reviews { get; set; }
-        //public virtual List<Bookshelf> Bookshelves { get; set; }
+        public virtual List<BookReview> Reviews { get; set; }
+        public virtual List<Bookshelf> Bookshelves { get; set; } 
 
         /*        [ForeignKey(nameof(Author))]
                 public int AuthorId { get; set; }

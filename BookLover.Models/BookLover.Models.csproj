@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookReviewModels\BookReviewCreate.cs" />
+    <Compile Include="BookReviewModels\BookReviewDetail.cs" />
+    <Compile Include="BookReviewModels\BookReviewEdit.cs" />
+    <Compile Include="BookReviewModels\BookReviewListItem.cs" />
     <Compile Include="AuthorCreate.cs" />
     <Compile Include="AuthorDetail.cs" />
     <Compile Include="AuthorEdit.cs" />
@@ -62,6 +66,9 @@
     <Compile Include="BookModels\BookDetail.cs" />
     <Compile Include="BookModels\BookEdit.cs" />
     <Compile Include="BookModels\BookListItem.cs" />
+    <Compile Include="BookshelfModels\BookshelfBookDisplay.cs" />
+    <Compile Include="BookshelfModels\BookshelfCreate.cs" />
+    <Compile Include="BookshelfModels\BookshelfDisplay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
