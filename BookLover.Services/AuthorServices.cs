@@ -78,5 +78,20 @@ namespace BookLover.Services
                     };
             }
         }
+
+        public bool DeleteAuthor(int authorId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Authors
+                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
+
+                ctx.Authors.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
