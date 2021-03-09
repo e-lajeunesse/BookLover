@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookReviewModels\BookReviewCreate.cs" />
+    <Compile Include="BookReviewModels\BookReviewDetail.cs" />
+    <Compile Include="BookReviewModels\BookReviewListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
