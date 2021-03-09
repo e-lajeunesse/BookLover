@@ -55,5 +55,31 @@ namespace BookLover.WebAPI.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public IHttpActionResult UpdateBookReview(BookReviewEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            BookReviewService service = CreateBookReviewService();
+            if (!service.UpdateBookReview(model))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteBookReview(int id)
+        {
+            BookReviewService service = CreateBookReviewService();
+            if (!service.DeleteBookReview(id))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
     }
 }

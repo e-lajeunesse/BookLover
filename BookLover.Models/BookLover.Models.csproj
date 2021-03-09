@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="BookReviewModels\BookReviewCreate.cs" />
     <Compile Include="BookReviewModels\BookReviewDetail.cs" />
+    <Compile Include="BookReviewModels\BookReviewEdit.cs" />
     <Compile Include="BookReviewModels\BookReviewListItem.cs" />
     <Compile Include="AuthorCreate.cs" />
     <Compile Include="AuthorDetail.cs" />
