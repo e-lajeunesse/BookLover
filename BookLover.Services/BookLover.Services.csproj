@@ -54,11 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookLover.Data\BookLover.Data.csproj">
+      <Project>{507fbb87-3d5f-439b-bab5-7dc73074d6be}</Project>
+      <Name>BookLover.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookLover.Models\BookLover.Models.csproj">
+      <Project>{db28080f-9e9d-4bc1-99ac-669ba9474612}</Project>
+      <Name>BookLover.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
