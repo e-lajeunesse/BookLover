@@ -14,7 +14,7 @@ namespace BookLover.Services
         private readonly Guid _userId;
 
 
-        //Need to Add
+        
         private Random rand = new Random();
 
         public BookService(Guid userId)
@@ -80,6 +80,22 @@ namespace BookLover.Services
             };
             return book;
         }*/
+
+        public bool UpdateBook(BookEdit model)
+        {
+            Book bookToEdit = _context.Books.Single(b => b.BookId == model.BookId);
+            bookToEdit.Title = model.Title;
+            bookToEdit.Genre = model.Genre;
+            bookToEdit.Description = model.Description;
+            return _context.SaveChanges() == 1;
+        }
+
+        public bool DeleteBook(int bookId)
+        {
+            Book bookToDelete = _context.Books.Single(b => b.BookId == bookId);
+            _context.Books.Remove(bookToDelete);
+            return _context.SaveChanges() == 1;
+        }
 
     }
 }

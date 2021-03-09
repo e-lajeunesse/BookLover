@@ -52,5 +52,32 @@ namespace BookLover.WebAPI.Controllers
             BookDetail book = service.GetBookById(id);
             return Ok(book);
         }*/
+
+        [HttpPut]
+        public IHttpActionResult UpdateBook(BookEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            BookService service = CreateBookService();
+            if (!service.UpdateBook(model))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteBook(int id)
+        {
+            BookService service = CreateBookService();
+            if (!service.DeleteBook(id))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
     }
 }
