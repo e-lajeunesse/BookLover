@@ -1,5 +1,6 @@
 ﻿using BookLover.Data;
 using BookLover.Models.BookModels;
+using BookLover.Models.BookshelfModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,7 @@ namespace BookLover.Services
 
 
 
-        /*public BookDetail GetBookById(int id)
+        public BookDetail GetBookById(int id)
         {
             Book bookToGet = _context.Books.Single(b => b.BookId == id);
 
@@ -70,7 +71,7 @@ namespace BookLover.Services
                 {
                     BookshelfId = reccomendations.BookshelfId,
                     Title = reccomendations.Title,
-                    Books = reccomendations.Books.Select(b => new BookshelfBookDisplayItem
+                    Books = reccomendations.Books.Select(b => new BookshelfBookDisplay
                     {
                         BookId = b.BookId,
                         Title = b.Title
@@ -79,7 +80,7 @@ namespace BookLover.Services
 
             };
             return book;
-        }*/
+        }
 
         public BookDetail GetBookByTitle(string title)
         {

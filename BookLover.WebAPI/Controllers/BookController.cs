@@ -45,13 +45,13 @@ namespace BookLover.WebAPI.Controllers
             return Ok(books);
         }
 
-/*        [HttpGet]
+        [HttpGet]
         public IHttpActionResult GetBookById(int id)
         {
             BookService service = CreateBookService();
             BookDetail book = service.GetBookById(id);
             return Ok(book);
-        }*/
+        }
 
         [HttpGet]
         public IHttpActionResult GetBookByTitle(string title)
