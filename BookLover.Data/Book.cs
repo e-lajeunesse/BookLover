@@ -24,7 +24,7 @@ namespace BookLover.Data
 
 
 
-        //public List<Review> Reviews { get; set; }
+        //public List<BookReview> Reviews { get; set; }
         //public List<Bookshelf> Bookshelves { get; set; }
 
         /*        [ForeignKey(nameof(Author))]
