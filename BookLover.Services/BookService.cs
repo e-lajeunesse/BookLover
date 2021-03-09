@@ -49,8 +49,8 @@ namespace BookLover.Services
         }
 
 
-        
-/*        public BookDetail GetBookById(int id)
+
+        /*public BookDetail GetBookById(int id)
         {
             Book bookToGet = _context.Books.Single(b => b.BookId == id);
 
@@ -80,6 +80,23 @@ namespace BookLover.Services
             };
             return book;
         }*/
+
+        public BookDetail GetBookByTitle(string title)
+        {
+            Book bookToGet = _context.Books.FirstOrDefault(b => b.Title.ToLower() == title.ToLower());
+            if (bookToGet == default)
+            {
+                return default;
+            }
+            BookDetail book = new BookDetail
+            {
+                BookId = bookToGet.BookId,
+                Title = bookToGet.Title,
+                Description = bookToGet.Description,
+                AverageRating = bookToGet.AverageRating
+            };
+            return book;
+        }
 
         public bool UpdateBook(BookEdit model)
         {

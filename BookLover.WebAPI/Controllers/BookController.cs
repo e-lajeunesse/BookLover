@@ -53,6 +53,14 @@ namespace BookLover.WebAPI.Controllers
             return Ok(book);
         }*/
 
+        [HttpGet]
+        public IHttpActionResult GetBookByTitle(string title)
+        {
+            BookService service = CreateBookService();
+            BookDetail book = service.GetBookByTitle(title);
+            return Ok(book);
+        }
+
         [HttpPut]
         public IHttpActionResult UpdateBook(BookEdit model)
         {
