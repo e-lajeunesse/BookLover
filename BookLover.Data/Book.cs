@@ -34,7 +34,7 @@ namespace BookLover.Data
 
 
         //public virtual List<BookReviewReview> Reviews { get; set; }
-        //public virtual List<Bookshelf> Bookshelves { get; set; }
+        public virtual List<Bookshelf> Bookshelves { get; set; }
 
         /*        [ForeignKey(nameof(Author))]
                 public int AuthorId { get; set; }
