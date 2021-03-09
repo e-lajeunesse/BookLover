@@ -35,8 +35,10 @@ namespace BookLover.Data
 
         //public DbSet<BookReview> BookReviews { get; set; }
         //public DbSet<AuthorReview> AuthorReviews { get; set; }
-        //public DbSet<Book> Books { get; set; }
+
         public DbSet<Author> Authors { get; set; }
+
+        public DbSet<Book> Books { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
