@@ -1,4 +1,5 @@
-﻿using BookLover.Models.BookReviewModels;
+﻿using BookLover.Data;
+using BookLover.Models.BookReviewModels;
 using BookLover.Models.BookshelfModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace BookLover.Models.BookModels
         public string Description { get; set; }
         public double AverageRating { get; set; }
         public BookshelfDisplay RecommendedBooks { get; set; }
-        public BookReviewDisplayItem BookReviews { get; set; }
+        // public BookReviewDisplayItem BookReviews { get; set; }
+        public List<BookReview> BookReviews { get; set; }
     }
 }

@@ -44,7 +44,13 @@ namespace BookLover.Services
                 Title = b.Title,
                 Genre = b.Genre,
                 Description = b.Description,
-                AverageRating = b.AverageRating
+                AverageRating = b.AverageRating,
+                BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+                {
+                    ReviewId = br.ReviewId,
+                    ReviewText = br.ReviewText,
+                    BookRating = br.BookRating,
+                }).ToList()
             }).ToList();
         }
 
@@ -58,7 +64,13 @@ namespace BookLover.Services
                     Title = b.Title,
                     Genre = b.Genre,
                     Description = b.Description,
-                    AverageRating = b.AverageRating
+                    AverageRating = b.AverageRating,
+                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+                    {
+                        ReviewId = br.ReviewId,
+                        ReviewText = br.ReviewText,
+                        BookRating = br.BookRating,
+                    }).ToList()
                 }).ToList();
         }
 
@@ -73,7 +85,8 @@ namespace BookLover.Services
                 Genre = bookToGet.Genre,
                 Description = bookToGet.Description,
                 AverageRating = bookToGet.AverageRating,
-                RecommendedBooks = GetRecommendedBooks(bookToGet)
+                RecommendedBooks = GetRecommendedBooks(bookToGet),
+                BookReviews = bookToGet.BookReviews
             };
             return book;
         }
@@ -92,7 +105,8 @@ namespace BookLover.Services
                 Genre = bookToGet.Genre,
                 Description = bookToGet.Description,
                 AverageRating = bookToGet.AverageRating,
-                RecommendedBooks = GetRecommendedBooks(bookToGet)
+                RecommendedBooks = GetRecommendedBooks(bookToGet),
+                BookReviews = bookToGet.BookReviews
             };
             return book;
         }
