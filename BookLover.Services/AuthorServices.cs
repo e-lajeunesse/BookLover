@@ -22,8 +22,7 @@ namespace BookLover.Services
         {
             var entity =
                 new Author()
-                {
-                    
+                {                    
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     AuthorId = model.AuthorId,
@@ -66,11 +65,12 @@ namespace BookLover.Services
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == authorId);
+                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
                 return
                     new AuthorDetail
                     {
-                        AuthorId = entity.AuthorId,                       
+                        AuthorId = entity.AuthorId,
+                        UserId = entity.UserId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
@@ -86,7 +86,7 @@ namespace BookLover.Services
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == authorId);
+                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
 
                 ctx.Authors.Remove(entity);
 
@@ -95,12 +95,12 @@ namespace BookLover.Services
         }
 
         public bool UpdateAuthor(AuthorEdit model)
-        {  
+        {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
                     .Authors
-                    .FirstOrDefault(a => a.AuthorId == model.AuthorId);
+                    .FirstOrDefault(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;

@@ -12,7 +12,7 @@ namespace BookLover.Data
        
         [Key]
         public int AuthorId { get; set; }
-
+        
         [Required]
         public string FirstName { get; set; }
         [Required]
