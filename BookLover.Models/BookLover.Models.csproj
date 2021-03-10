@@ -54,8 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookReviewModels\BookDisplayItem.cs" />
     <Compile Include="BookReviewModels\BookReviewCreate.cs" />
     <Compile Include="BookReviewModels\BookReviewDetail.cs" />
+    <Compile Include="BookReviewModels\BookReviewDisplayItem.cs" />
     <Compile Include="BookReviewModels\BookReviewEdit.cs" />
     <Compile Include="BookReviewModels\BookReviewListItem.cs" />
     <Compile Include="AuthorCreate.cs" />
@@ -73,6 +75,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookLover.Data\BookLover.Data.csproj">
+      <Project>{507fbb87-3d5f-439b-bab5-7dc73074d6be}</Project>
+      <Name>BookLover.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

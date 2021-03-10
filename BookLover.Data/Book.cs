@@ -22,7 +22,7 @@ namespace BookLover.Data
         public string Description { get; set; }
         public double AverageRating { get; set; }
 
-        public virtual List<BookReview> Reviews { get; set; }
+        public virtual List<BookReview> BookReviews { get; set; }
         public virtual List<Bookshelf> Bookshelves { get; set; } 
 
         /*        [ForeignKey(nameof(Author))]

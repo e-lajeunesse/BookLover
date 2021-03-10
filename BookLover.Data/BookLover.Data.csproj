@@ -88,12 +88,23 @@
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
+    <Compile Include="BooksToRead.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202103092105455_ReviewClass.cs" />
+    <Compile Include="Migrations\202103092105455_ReviewClass.Designer.cs">
+      <DependentUpon>202103092105455_ReviewClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103092105455_ReviewClass.resx">
+      <DependentUpon>202103092105455_ReviewClass.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
