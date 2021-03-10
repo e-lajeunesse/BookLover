@@ -10,6 +10,7 @@ namespace BookLover.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "BookLover.Data.ApplicationDbContext";
         }
 
         protected override void Seed(BookLover.Data.ApplicationDbContext context)

@@ -22,7 +22,6 @@ namespace BookLover.WebAPI.Controllers
         }
 
         [HttpPost]
-
         public IHttpActionResult PostBookshelf(BookshelfCreate model)
         {
             if (!ModelState.IsValid)
@@ -44,6 +43,41 @@ namespace BookLover.WebAPI.Controllers
             BookshelfService service = CreateBookshelfService();
             List<BookshelfDisplay> bookshelves = service.GetAllBookShelves();
             return Ok(bookshelves);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetBookshelfById(int id)
+        {
+            BookshelfService service = CreateBookshelfService();
+            BookshelfDisplay shelf = service.GetBookshelfById(id);
+            return Ok(shelf);
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateBookshelf(BookshelfEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            BookshelfService service = CreateBookshelfService();
+
+            if (!service.UpdateBookshelf(model))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteBookshelfById(int id)
+        {
+            BookshelfService service = CreateBookshelfService();
+            if (!service.DeleteBookshelf(id))
+            {
+                return InternalServerError();
+            }
+            return Ok();
         }
     }
 }
