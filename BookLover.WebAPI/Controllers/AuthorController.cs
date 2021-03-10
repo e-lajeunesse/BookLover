@@ -1,4 +1,5 @@
-﻿using BookLover.Models;
+﻿using BookLover.Data;
+using BookLover.Models;
 using BookLover.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -9,7 +10,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-
 
 namespace BookLover.WebAPI.Controllers
 {

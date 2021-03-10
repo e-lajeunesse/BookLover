@@ -100,7 +100,6 @@ namespace BookLover.WebAPI.Controllers
             return Ok();
         }
 
-
         //Ben's changes
         [HttpGet]
         public IHttpActionResult GetBooksByAuthor()

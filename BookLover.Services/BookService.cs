@@ -137,14 +137,13 @@ namespace BookLover.Services
             return _context.SaveChanges() == 1;
         }
 
-
         //Ben's changes
         public List<BookListItem> GetBooksByAuthor()
         {
             List<Book> books = _context.Books.ToList();
             List<BookListItem> bookListItems = books.Select(b => new BookListItem()
             {
-                BookId = b.BookId,               
+                BookId = b.BookId,
                 Title = b.Title,
                 Genre = b.Genre,
                 Description = b.Description,

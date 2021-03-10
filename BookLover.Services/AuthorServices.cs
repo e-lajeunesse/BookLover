@@ -1,6 +1,5 @@
 ﻿using BookLover.Data;
 using BookLover.Models;
-using BookLover.Models.BookModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -44,7 +43,7 @@ namespace BookLover.Services
             {
                 var query =
                     ctx
-                        .Authors
+                        .Authors                        
                         .Select(
                             a =>
                                 new AuthorListItems
@@ -71,7 +70,7 @@ namespace BookLover.Services
                 return
                     new AuthorDetail
                     {
-                        AuthorId = entity.AuthorId,
+                        AuthorId = entity.AuthorId,                       
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
