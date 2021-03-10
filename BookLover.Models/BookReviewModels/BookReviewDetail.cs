@@ -21,6 +21,6 @@ namespace BookLover.Models.BookReviewModels
         [Display(Name = "Modified")]
         public DateTimeOffset? ModifiedReview { get; set; }
         public int BookId { get; set; }
-        public List<BookReviewDisplayItem> Books { get; set; }
+        // public List<BookReviewDisplayItem> Books { get; set; }
     }
 }

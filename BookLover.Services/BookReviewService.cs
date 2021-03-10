@@ -47,14 +47,12 @@ namespace BookLover.Services
                 CreatedReview = br.CreatedReview,
                 BookRating = br.BookRating,
                 BookId = br.BookId,
-
-
-                Books = br.Books.Select(b => new BookDisplayItem
+                Book = new BookDisplayItem
                 {
-                    BookId = b.BookId,
-                    Title = b.Title,
-                    Description = b.Description,
-                }).ToList()
+                    Title = br.Book.Title,
+                    Genre = br.Book.Genre,
+                    Description = br.Book.Description,
+                }
             }).ToList();
 
             return bookReviewListItems;
@@ -72,12 +70,7 @@ namespace BookLover.Services
                 ReviewTitle = reviewToGet.ReviewTitle,
                 BookId = reviewToGet.BookId,
                 BookRating = reviewToGet.BookRating,
-                /*Books = reviewToGet.Books.Select(b => new BookDisplayItem
-                {
-                    BookId = b.BookId,
-                    Title = b.Title,
-                    Description = b.Description
-                }).ToList()*/
+                // Books = reviewToGet.Books
             };
 
             return bookReview;

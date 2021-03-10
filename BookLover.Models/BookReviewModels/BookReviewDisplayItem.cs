@@ -12,6 +12,6 @@ namespace BookLover.Models.BookReviewModels
         public int ReviewId { get; set; }
         public double BookRating { get; set; }
         public string ReviewText { get; set; }
-        public List<BookDisplayItem> Books { get; set; }
+        // public List<BookDisplayItem> Books { get; set; }
     }
 }

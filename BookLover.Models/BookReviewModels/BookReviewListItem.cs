@@ -18,6 +18,6 @@ namespace BookLover.Models.BookReviewModels
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedReview { get; set; }
-        public List<BookDisplayItem> Books { get; set; }
+        public BookDisplayItem Book { get; set; }
     }
 }

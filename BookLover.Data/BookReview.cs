@@ -21,6 +21,6 @@ namespace BookLover.Data
 
         [ForeignKey(nameof(Book))]
         public int BookId { get; set; }
-        public virtual List<Book> Books { get; set; }
+        public virtual Book Book { get; set; }
     }
 }
