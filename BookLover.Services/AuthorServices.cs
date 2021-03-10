@@ -2,6 +2,7 @@
 using BookLover.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,7 @@ namespace BookLover.Services
                     new AuthorDetail
                     {
                         AuthorId = entity.AuthorId,
+                        UserId = entity.UserId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
@@ -110,5 +112,26 @@ namespace BookLover.Services
 
             }
         }
+
+        public AuthorDetail GetAuthorByName(string firstName, string lastName)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Authors
+                        .Single(a => a.FirstName == firstName && a.LastName == lastName);
+                return
+                    new AuthorDetail
+                    {
+                        AuthorId = entity.AuthorId,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        Description = entity.Description,
+
+                    };
+            }
+        }
+
     }          
 }

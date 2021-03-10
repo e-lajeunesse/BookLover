@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace BookLover.WebAPI.Controllers
@@ -79,6 +80,16 @@ namespace BookLover.WebAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public IHttpActionResult GetAuthorByName(string firstName, string lastName)
+        {
+            AuthorServices authorService = CreateAuthorService();
+            AuthorDetail author = authorService.GetAuthorByName(firstName, lastName);
+            return Ok(author);
+        }
+
+       
 
     }
 }
