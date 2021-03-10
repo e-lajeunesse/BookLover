@@ -11,7 +11,7 @@ namespace BookLover.Data
     {
         [Key]
         public int AuthorId { get; set; }
-        public Guid UserId { get; set; }
+        
         [Required]
         public string FirstName { get; set; }
         [Required]
