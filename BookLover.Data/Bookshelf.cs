@@ -14,6 +14,9 @@ namespace BookLover.Data
         public int BookshelfId { get; set; }
 
         [Required]
+        public Guid OwnerId { get; set; }
+
+        [Required]
         public string Title { get; set; }
 
         [ForeignKey(nameof(Book))]        

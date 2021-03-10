@@ -25,29 +25,31 @@ namespace BookLover.Services
             Bookshelf shelf = new Bookshelf()
             {
                 Title = model.Title,
+                OwnerId = _userId,
                 BookIds = model.BookIds,
                 Books = allBooks.Where(b => model.BookIds.Contains(b.BookId)).ToList()
             };
 
             _context.Bookshelves.Add(shelf);
-            return _context.SaveChanges() >  0;
+            return _context.SaveChanges() > 0;
         }
 
         public List<BookshelfDisplay> GetAllBookShelves()
         {
-            List<BookshelfDisplay> allBooks = _context.Bookshelves.Select(s => new BookshelfDisplay
-            {
-                BookshelfId = s.BookshelfId,
-                Title = s.Title,
-
-                Books = s.Books.Select(b => new BookshelfBookDisplay
+            List<BookshelfDisplay> allBookshelves = _context.Bookshelves.Where(s => s.OwnerId == _userId).
+                Select(s => new BookshelfDisplay
                 {
-                    BookId = b.BookId,
-                    Title = b.Title,
-                }).ToList()
-            }).ToList();
+                    BookshelfId = s.BookshelfId,
+                    Title = s.Title,
 
-            return allBooks;
+                    Books = s.Books.Select(b => new BookshelfBookDisplay
+                    {
+                        BookId = b.BookId,
+                        Title = b.Title,
+                    }).ToList()
+                }).ToList();
+
+            return allBookshelves;
         }
 
         public BookshelfDisplay GetBookshelfById(int id)
@@ -72,12 +74,12 @@ namespace BookLover.Services
         {
             Bookshelf shelfToEdit = _context.Bookshelves.Single(b => b.BookshelfId == model.BookshelfId);
             shelfToEdit.Title = model.Title;
-            shelfToEdit.BookIds = model.BookIds;            
+            shelfToEdit.BookIds = model.BookIds;
             shelfToEdit.Books = _context.Books.Where(b => model.BookIds.Contains(b.BookId)).ToList();
 
             // Removes books that should no longer be on shelf after update
             List<Book> booksToRemove = shelfToEdit.Books.Where(b => !model.BookIds.Contains(b.BookId)).ToList();
-            foreach(Book book in booksToRemove)
+            foreach (Book book in booksToRemove)
             {
                 shelfToEdit.Books.Remove(book);
             }

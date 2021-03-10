@@ -22,7 +22,6 @@ namespace BookLover.WebAPI.Controllers
         }
 
         [HttpPost]
-
         public IHttpActionResult PostBookshelf(BookshelfCreate model)
         {
             if (!ModelState.IsValid)
