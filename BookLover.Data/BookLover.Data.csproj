@@ -89,6 +89,10 @@
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202103101514245_initial.cs" />
+    <Compile Include="Migrations\202103101514245_initial.Designer.cs">
+      <DependentUpon>202103101514245_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,11 +101,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103091950327_InitialCreate.resx">
-      <DependentUpon>202103091950327_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103101439141_ownerid.resx">
-      <DependentUpon>202103101439141_ownerid.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103101514245_initial.resx">
+      <DependentUpon>202103101514245_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -46,6 +46,11 @@ namespace BookLover.Services
             }).ToList();
         }
 
+/*        public List<BookListItem> GetBooksByGenre(string genre)
+        {
+
+        }*/
+
         public BookDetail GetBookById(int id)
         {
             Book bookToGet = _context.Books.Single(b => b.BookId == id);
