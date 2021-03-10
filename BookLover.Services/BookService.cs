@@ -43,7 +43,7 @@ namespace BookLover.Services
                 BookId = b.BookId,
                 Title = b.Title,
                 Description = b.Description,
-                AverageRating = b.AverageRating
+                AverageRating = b.AverageRating,
             }).ToList();
         }
 
@@ -57,7 +57,13 @@ namespace BookLover.Services
                 Title = bookToGet.Title,
                 Description = bookToGet.Description,
                 AverageRating = bookToGet.AverageRating,
-                RecommendedBooks = GetRecommendedBooks(bookToGet)
+                RecommendedBooks = GetRecommendedBooks(bookToGet),
+                BookReviews = (BookReviewDisplayItem)bookToGet.BookReviews.Select(br => new BookReviewDisplayItem()
+                {
+                    ReviewId = br.ReviewId,
+                    ReviewText = br.ReviewText,
+                    BookRating = br.BookRating,
+                })
             };
             return book;
         }

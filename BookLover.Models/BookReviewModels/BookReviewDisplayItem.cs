@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookLover.Models.BookModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace BookLover.Models.BookReviewModels
         public int ReviewId { get; set; }
         public double BookRating { get; set; }
         public string ReviewText { get; set; }
+        public List<BookDisplayItem> Books { get; set; }
     }
 }

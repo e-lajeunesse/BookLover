@@ -90,7 +90,6 @@
     <Compile Include="Bookshelf.cs" />
     <Compile Include="BooksToRead.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
