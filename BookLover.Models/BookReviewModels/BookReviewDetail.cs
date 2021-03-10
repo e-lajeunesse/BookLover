@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookLover.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,5 +21,6 @@ namespace BookLover.Models.BookReviewModels
         [Display(Name = "Modified")]
         public DateTimeOffset? ModifiedReview { get; set; }
         public int BookId { get; set; }
+        public Book Book { get; set; }
     }
 }
