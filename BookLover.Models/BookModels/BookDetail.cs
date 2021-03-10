@@ -18,6 +18,7 @@ namespace BookLover.Models.BookModels
         public double AverageRating { get; set; }
         public BookshelfDisplay RecommendedBooks { get; set; }
         // public BookReviewDisplayItem BookReviews { get; set; }
-        public List<BookReview> BookReviews { get; set; }
+        // public List<BookReview> BookReviews { get; set; }
+        public List<BookReviewDisplayItem> BookReviews { get; set; }
     }
 }

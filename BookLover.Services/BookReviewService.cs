@@ -70,6 +70,12 @@ namespace BookLover.Services
                 ReviewTitle = reviewToGet.ReviewTitle,
                 BookId = reviewToGet.BookId,
                 BookRating = reviewToGet.BookRating,
+                Book = new BookDisplayItem
+                {
+                    Title = reviewToGet.Book.Title,
+                    Genre = reviewToGet.Book.Genre,
+                    Description = reviewToGet.Book.Description,
+                }
                 // Books = reviewToGet.Books
             };
 
