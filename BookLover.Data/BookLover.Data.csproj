@@ -89,14 +89,6 @@
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202103091950327_InitialCreate.cs" />
-    <Compile Include="Migrations\202103091950327_InitialCreate.Designer.cs">
-      <DependentUpon>202103091950327_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103101439141_ownerid.cs" />
-    <Compile Include="Migrations\202103101439141_ownerid.Designer.cs">
-      <DependentUpon>202103101439141_ownerid.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
