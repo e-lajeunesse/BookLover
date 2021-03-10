@@ -97,12 +97,12 @@ namespace BookLover.Services
         }
 
         public bool UpdateAuthor(AuthorEdit model)
-        {
+        {  
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
                     .Authors
-                    .Single(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
+                    .FirstOrDefault(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
@@ -113,14 +113,14 @@ namespace BookLover.Services
             }
         }
 
-        public AuthorDetail GetAuthorByName(string firstName, string lastName)
+        public AuthorDetail GetAuthorByFirstName(string firstName)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.FirstName == firstName && a.LastName == lastName);
+                        .FirstOrDefault(a => a.FirstName == firstName);
                 return
                     new AuthorDetail
                     {
@@ -128,8 +128,28 @@ namespace BookLover.Services
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
-
                     };
+                
+            }
+        }
+
+        public AuthorDetail GetAuthorByLastName(string lastName)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Authors
+                        .FirstOrDefault(a => a.LastName == lastName);
+                return
+                    new AuthorDetail
+                    {
+                        AuthorId = entity.AuthorId,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        Description = entity.Description,
+                    };
+
             }
         }
 

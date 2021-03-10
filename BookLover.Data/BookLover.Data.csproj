@@ -97,6 +97,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+
+    <ProjectReference Include="..\BookLover.Models\BookLover.Models.csproj">
+      <Project>{DB28080F-9E9D-4BC1-99AC-669BA9474612}</Project>
+      <Name>BookLover.Models</Name>
+    </ProjectReference>
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,8 +1,10 @@
-﻿using BookLover.Models;
+﻿using BookLover.Data;
+using BookLover.Models;
 using BookLover.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,8 +15,7 @@ namespace BookLover.WebAPI.Controllers
 {
     [Authorize]
     public class AuthorController : ApiController
-    {
-
+    { 
         private AuthorServices CreateAuthorService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -82,14 +83,20 @@ namespace BookLover.WebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult GetAuthorByName(string firstName, string lastName)
+        public IHttpActionResult GetAuthorByFirstName(string firstName)
         {
             AuthorServices authorService = CreateAuthorService();
-            AuthorDetail author = authorService.GetAuthorByName(firstName, lastName);
+            AuthorDetail author = authorService.GetAuthorByFirstName(firstName);
             return Ok(author);
         }
 
-       
+        [HttpGet]
+        public IHttpActionResult GetAuthorByLastName(string lastName)
+        {
+            AuthorServices authorService = CreateAuthorService();
+            AuthorDetail author = authorService.GetAuthorByLastName(lastName);
+            return Ok(author);
+        }
 
     }
 }
