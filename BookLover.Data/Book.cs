@@ -24,7 +24,7 @@ namespace BookLover.Data
         {
             get
             {
-                return Reviews.Select(r => r.BookRating).Sum() / Reviews.Count;
+                return BookReviews.Select(r => r.BookRating).Sum() / BookReviews.Count;
             }
         }
 

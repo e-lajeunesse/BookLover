@@ -42,15 +42,25 @@ namespace BookLover.Services
             {
                 BookId = b.BookId,
                 Title = b.Title,
+                Genre = b.Genre,
                 Description = b.Description,
                 AverageRating = b.AverageRating
             }).ToList();
         }
 
-/*        public List<BookListItem> GetBooksByGenre(string genre)
+        public List<BookListItem> GetBooksByGenre(string genre)
         {
-
-        }*/
+            List<Book> allBooks = _context.Books.ToList();
+            return allBooks.Where(b => b.Genre.ToLower() == genre.ToLower()).
+                Select(b => new BookListItem()
+                {
+                    BookId = b.BookId,
+                    Title = b.Title,
+                    Genre = b.Genre,
+                    Description = b.Description,
+                    AverageRating = b.AverageRating
+                }).ToList();
+        }
 
         public BookDetail GetBookById(int id)
         {
@@ -60,6 +70,7 @@ namespace BookLover.Services
             {
                 BookId = bookToGet.BookId,
                 Title = bookToGet.Title,
+                Genre = bookToGet.Genre,
                 Description = bookToGet.Description,
                 AverageRating = bookToGet.AverageRating,
                 RecommendedBooks = GetRecommendedBooks(bookToGet)
@@ -78,6 +89,7 @@ namespace BookLover.Services
             {
                 BookId = bookToGet.BookId,
                 Title = bookToGet.Title,
+                Genre = bookToGet.Genre,
                 Description = bookToGet.Description,
                 AverageRating = bookToGet.AverageRating,
                 RecommendedBooks = GetRecommendedBooks(bookToGet)
