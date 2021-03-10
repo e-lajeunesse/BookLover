@@ -22,8 +22,7 @@ namespace BookLover.Services
         {
             var entity =
                 new Author()
-                {
-                    UserId = _userId,
+                {                    
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     AuthorId = model.AuthorId,
@@ -43,8 +42,7 @@ namespace BookLover.Services
             {
                 var query =
                     ctx
-                        .Authors
-                        .Where(a => a.UserId == _userId)
+                        .Authors                        
                         .Select(
                             a =>
                                 new AuthorListItems
@@ -66,13 +64,12 @@ namespace BookLover.Services
             {
                 var entity =
                     ctx
-                        .Authors
-                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
+                        .Authors                        
+                        .Single(a => a.AuthorId == authorId);
                 return
                     new AuthorDetail
                     {
-                        AuthorId = entity.AuthorId,
-                        UserId = entity.UserId,
+                        AuthorId = entity.AuthorId,                        
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
@@ -87,8 +84,8 @@ namespace BookLover.Services
             {
                 var entity =
                     ctx
-                        .Authors
-                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
+                        .Authors                        
+                        .Single(a => a.AuthorId == authorId);
 
                 ctx.Authors.Remove(entity);
 
@@ -97,12 +94,12 @@ namespace BookLover.Services
         }
 
         public bool UpdateAuthor(AuthorEdit model)
-        {  
+        {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
-                    .Authors
-                    .FirstOrDefault(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
+                    .Authors                    
+                    .FirstOrDefault(a => a.AuthorId == model.AuthorId);
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
