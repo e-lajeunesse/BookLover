@@ -46,7 +46,15 @@ namespace BookLover.Services
                 ReviewText = br.ReviewText,
                 CreatedReview = br.CreatedReview,
                 BookRating = br.BookRating,
-                BookId = br.BookId
+                BookId = br.BookId,
+
+
+                Books = br.Books.Select(b => new BookDisplayItem
+                {
+                    BookId = b.BookId,
+                    Title = b.Title,
+                    Description = b.Description,
+                }).ToList()
             }).ToList();
 
             return bookReviewListItems;
@@ -63,7 +71,13 @@ namespace BookLover.Services
                 CreatedReview = reviewToGet.CreatedReview,
                 ReviewTitle = reviewToGet.ReviewTitle,
                 BookId = reviewToGet.BookId,
-                BookRating = reviewToGet.BookRating
+                BookRating = reviewToGet.BookRating,
+                /*Books = reviewToGet.Books.Select(b => new BookDisplayItem
+                {
+                    BookId = b.BookId,
+                    Title = b.Title,
+                    Description = b.Description
+                }).ToList()*/
             };
 
             return bookReview;

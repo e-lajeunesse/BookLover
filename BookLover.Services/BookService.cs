@@ -44,7 +44,7 @@ namespace BookLover.Services
                 Title = b.Title,
                 Genre = b.Genre,
                 Description = b.Description,
-                AverageRating = b.AverageRating,
+                AverageRating = b.AverageRating
             }).ToList();
         }
 
