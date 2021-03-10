@@ -6,56 +6,90 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace BookLover.WebAPI.Controllers
 {
-            [Authorize]
-        public class AuthorController : ApiController
+    [Authorize]
+    public class AuthorController : ApiController
+    {
+
+        private AuthorServices CreateAuthorService()
         {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var authorService = new AuthorServices(userId);
+            return authorService;
+        }
 
-            private AuthorServices CreateAuthorService()
-            {
-                var userId = Guid.Parse(User.Identity.GetUserId());
-                var authorService = new AuthorServices(userId);
-                return authorService;
-            }
-
-            public IHttpActionResult Get()
-            {
-                AuthorServices authorService = CreateAuthorService();
-                var authors = authorService.GetAuthors();
-                return Ok(authors);
-            }
-            public IHttpActionResult Post(AuthorCreate author)
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-
-                var service = CreateAuthorService();
-
-                if (!service.CreateAuthor(author))
-                    return InternalServerError();
-
-                return Ok();
-            }
-
-            public IHttpActionResult GetAuthorById(int AuthorId)
-            {
-                AuthorServices authorService = CreateAuthorService();
-                var author = authorService.GetAuthorById(AuthorId);
-                return Ok(author);
-            }
-
-            public IHttpActionResult DeleteAuthor(int Authorid)
+        
+        [HttpGet]
+        public IHttpActionResult Get()
         {
-                var service = CreateAuthorService();
+            AuthorServices authorService = CreateAuthorService();
+            var authors = authorService.GetAuthors();
+            return Ok(authors);
+        }
 
-                if (!service.DeleteAuthor(Authorid))
+        
+        [HttpPost]
+        public IHttpActionResult Post(AuthorCreate author)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateAuthorService();
+
+            if (!service.CreateAuthor(author))
                 return InternalServerError();
 
-                return Ok();
+            return Ok();
         }
+
+        
+        [HttpGet]
+        public IHttpActionResult GetAuthorById(int authorId)
+        {
+            AuthorServices authorService = CreateAuthorService();
+            var author = authorService.GetAuthorById(authorId);
+            return Ok(author);
+        }
+
+        
+        [HttpDelete]
+        public IHttpActionResult DeleteAuthor(int authorid)
+        {
+            var service = CreateAuthorService();
+
+            if (!service.DeleteAuthor(authorid))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateAuthor(AuthorEdit model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            AuthorServices service = CreateAuthorService();
+
+            if (!service.UpdateAuthor(model))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAuthorByName(string firstName, string lastName)
+        {
+            AuthorServices authorService = CreateAuthorService();
+            AuthorDetail author = authorService.GetAuthorByName(firstName, lastName);
+            return Ok(author);
+        }
+
+       
 
     }
 }

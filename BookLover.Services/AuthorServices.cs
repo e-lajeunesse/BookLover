@@ -2,6 +2,7 @@
 using BookLover.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,18 +60,19 @@ namespace BookLover.Services
             }
         }
 
-        public AuthorDetail GetAuthorById(int AuthorId)
+        public AuthorDetail GetAuthorById(int authorId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == AuthorId && a.UserId == _userId);
+                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
                 return
                     new AuthorDetail
                     {
                         AuthorId = entity.AuthorId,
+                        UserId = entity.UserId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
@@ -90,8 +92,46 @@ namespace BookLover.Services
 
                 ctx.Authors.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() > 0;
             }
         }
-    }
+
+        public bool UpdateAuthor(AuthorEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Authors
+                    .Single(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
+
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.Description = model.Description;
+
+                return ctx.SaveChanges() > 0;
+
+            }
+        }
+
+        public AuthorDetail GetAuthorByName(string firstName, string lastName)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Authors
+                        .Single(a => a.FirstName == firstName && a.LastName == lastName);
+                return
+                    new AuthorDetail
+                    {
+                        AuthorId = entity.AuthorId,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        Description = entity.Description,
+
+                    };
+            }
+        }
+
+    }          
 }
