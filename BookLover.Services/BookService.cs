@@ -27,7 +27,7 @@ namespace BookLover.Services
             {
                 Title = model.Title,
                 Genre = model.Genre,
-                Description = model.Description
+                Description = model.Description                
                 //AuthorId = model.AuthorId
             };
 
@@ -61,6 +61,21 @@ namespace BookLover.Services
                     AverageRating = b.AverageRating
                 }).ToList();
         }
+
+        public List<BookListItem> SortBooksByRating()
+        {
+            List<Book> allBooks = _context.Books.ToList();
+            List<Book> sortedBooks = allBooks.OrderByDescending(b => b.AverageRating).ToList();
+            return sortedBooks.Select(b => new BookListItem()
+            {
+                BookId = b.BookId,
+                Title = b.Title,
+                Genre = b.Genre,
+                Description = b.Description,
+                AverageRating = b.AverageRating
+            }).ToList();            
+        }
+
 
         public BookDetail GetBookById(int id)
         {
