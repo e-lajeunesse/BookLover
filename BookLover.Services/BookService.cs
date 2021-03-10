@@ -1,4 +1,5 @@
 ﻿using BookLover.Data;
+using BookLover.Models;
 using BookLover.Models.BookModels;
 using BookLover.Models.BookReviewModels;
 using BookLover.Models.BookshelfModels;
@@ -134,6 +135,28 @@ namespace BookLover.Services
             Book bookToDelete = _context.Books.Single(b => b.BookId == bookId);
             _context.Books.Remove(bookToDelete);
             return _context.SaveChanges() == 1;
+        }
+
+
+        //Ben's changes
+        public List<BookListItem> GetBooksByAuthor()
+        {
+            List<Book> books = _context.Books.ToList();
+            List<BookListItem> bookListItems = books.Select(b => new BookListItem()
+            {
+                BookId = b.BookId,               
+                Title = b.Title,
+                Genre = b.Genre,
+                Description = b.Description,
+                AuthorId = b.AuthorId,
+                Author = new AuthorListItems
+                {
+                    FirstName = b.Author.FirstName,
+                    LastName = b.Author.LastName
+                }
+            }).ToList();
+
+            return bookListItems;
         }
 
     }

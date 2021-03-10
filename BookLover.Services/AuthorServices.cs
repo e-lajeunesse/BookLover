@@ -1,5 +1,6 @@
 ﻿using BookLover.Data;
 using BookLover.Models;
+using BookLover.Models.BookModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,7 +24,7 @@ namespace BookLover.Services
             var entity =
                 new Author()
                 {
-                    UserId = _userId,
+                    
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     AuthorId = model.AuthorId,
@@ -44,7 +45,6 @@ namespace BookLover.Services
                 var query =
                     ctx
                         .Authors
-                        .Where(a => a.UserId == _userId)
                         .Select(
                             a =>
                                 new AuthorListItems
@@ -67,12 +67,11 @@ namespace BookLover.Services
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
+                        .Single(a => a.AuthorId == authorId);
                 return
                     new AuthorDetail
                     {
                         AuthorId = entity.AuthorId,
-                        UserId = entity.UserId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
@@ -88,7 +87,7 @@ namespace BookLover.Services
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
+                        .Single(a => a.AuthorId == authorId);
 
                 ctx.Authors.Remove(entity);
 
@@ -102,7 +101,7 @@ namespace BookLover.Services
             {
                 var entity = ctx
                     .Authors
-                    .FirstOrDefault(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
+                    .FirstOrDefault(a => a.AuthorId == model.AuthorId);
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;

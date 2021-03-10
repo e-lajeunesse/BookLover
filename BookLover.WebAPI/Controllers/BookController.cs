@@ -99,5 +99,15 @@ namespace BookLover.WebAPI.Controllers
             }
             return Ok();
         }
+
+
+        //Ben's changes
+        [HttpGet]
+        public IHttpActionResult GetBooksByAuthor()
+        {
+            BookService service = CreateBookService();
+            List<BookListItem> books = service.GetBooksByAuthor();
+            return Ok(books);
+        }
     }
 }

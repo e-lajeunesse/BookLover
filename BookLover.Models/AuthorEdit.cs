@@ -10,7 +10,6 @@ namespace BookLover.Models
     public class AuthorEdit
     {
         public int AuthorId { get; set; }
-        public Guid UserId { get; set; }
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters")]
         public string FirstName { get; set; }
