@@ -1,5 +1,6 @@
 ﻿using BookLover.Data;
 using BookLover.Models;
+using BookLover.Models.BookModels;
 using BookLover.Models.BookReviewModels;
 using System;
 using System.Collections.Generic;
