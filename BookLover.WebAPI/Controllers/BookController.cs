@@ -46,6 +46,18 @@ namespace BookLover.WebAPI.Controllers
         }
 
         [HttpGet]
+        public IHttpActionResult GetBooksByGenre(string genre)
+        {
+            BookService service = CreateBookService();
+            List<BookListItem> books = service.GetBooksByGenre(genre);
+            if (books.Count > 0)
+            {
+                return Ok(books);
+            }
+            return Ok($"No books found for genre: {genre}");
+        }
+
+        [HttpGet]
         public IHttpActionResult GetBookById(int id)
         {
             BookService service = CreateBookService();

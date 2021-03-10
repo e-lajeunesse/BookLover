@@ -20,7 +20,13 @@ namespace BookLover.Data
 
         [MaxLength(500)]
         public string Description { get; set; }
-        public double AverageRating { get; set; }
+        public double AverageRating 
+        {
+            get
+            {
+                return BookReviews.Select(r => r.BookRating).Sum() / BookReviews.Count;
+            }
+        }
 
         public virtual List<BookReview> BookReviews { get; set; }
         public virtual List<Bookshelf> Bookshelves { get; set; } 
