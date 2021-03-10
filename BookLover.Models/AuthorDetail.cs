@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,5 +21,7 @@ namespace BookLover.Models
         public List<string> Books { get; set; }
 
         public string Description { get; set; }
+
+       
     }
 }

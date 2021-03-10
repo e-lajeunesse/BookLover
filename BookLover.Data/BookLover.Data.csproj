@@ -89,12 +89,17 @@
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookLover.Models\BookLover.Models.csproj">
+      <Project>{DB28080F-9E9D-4BC1-99AC-669BA9474612}</Project>
+      <Name>BookLover.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
