@@ -69,6 +69,7 @@
     <Compile Include="BookshelfModels\BookshelfBookDisplay.cs" />
     <Compile Include="BookshelfModels\BookshelfCreate.cs" />
     <Compile Include="BookshelfModels\BookshelfDisplay.cs" />
+    <Compile Include="BookshelfModels\BookshelfEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
