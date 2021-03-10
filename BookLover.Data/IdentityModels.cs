@@ -3,6 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BookLover.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -38,6 +39,7 @@ namespace BookLover.Data
         public DbSet<BookReview> BookReviews { get; set; }
        
         public DbSet<Author> Authors { get; set; }
+        
         public DbSet<Book> Books { get; set; }
         public DbSet<Bookshelf> Bookshelves { get; set; }
 
