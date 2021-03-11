@@ -90,9 +90,9 @@
     <Compile Include="Bookshelf.cs" />
     <Compile Include="BooksToRead.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202103101952245_Table.cs" />
-    <Compile Include="Migrations\202103101952245_Table.Designer.cs">
-      <DependentUpon>202103101952245_Table.cs</DependentUpon>
+    <Compile Include="Migrations\202103110049391_initial.cs" />
+    <Compile Include="Migrations\202103110049391_initial.Designer.cs">
+      <DependentUpon>202103110049391_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,8 +102,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103101952245_Table.resx">
-      <DependentUpon>202103101952245_Table.cs</DependentUpon>
+    <Content Include="Seeding.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103110049391_initial.resx">
+      <DependentUpon>202103110049391_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
