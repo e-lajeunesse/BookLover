@@ -24,7 +24,7 @@ namespace BookLover.Data
             get
             {
                 return new List<string> { "Horror","Fantasy","Romance","Science Fiction","Thriller","Mystery",
-                    "Young Adult","Historical Fiction","Nonfiction"};
+                    "Young Adult","Historical Fiction","Nonfiction", "Comedy"};
             }
         }
 
