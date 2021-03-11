@@ -58,6 +58,7 @@
     <Compile Include="AuthorServices.cs" />
     <Compile Include="BookService.cs" />
     <Compile Include="BookshelfService.cs" />
+    <Compile Include="CommentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

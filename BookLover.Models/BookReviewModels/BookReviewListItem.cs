@@ -1,4 +1,5 @@
 ﻿using BookLover.Models.BookModels;
+using BookLover.Models.CommentModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,8 +17,10 @@ namespace BookLover.Models.BookReviewModels
         public string ReviewTitle { get; set; }
         public string ReviewText { get; set; }
 
+
         [Display(Name = "Created")]
         public DateTimeOffset CreatedReview { get; set; }
         public BookDisplayItem Book { get; set; }
+        public List<CommentDisplayItem> Comments { get; set; }
     }
 }

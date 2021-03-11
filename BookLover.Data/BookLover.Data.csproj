@@ -88,6 +88,16 @@
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
+    <Compile Include="Comment.cs" />
+    <Compile Include="Migrations\202103111854260_Comment.cs" />
+    <Compile Include="Migrations\202103111854260_Comment.Designer.cs">
+      <DependentUpon>202103111854260_Comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103111911572_changedComments.cs" />
+    <Compile Include="Migrations\202103111911572_changedComments.Designer.cs">
+      <DependentUpon>202103111911572_changedComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +108,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Seed.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103111854260_Comment.resx">
+      <DependentUpon>202103111854260_Comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103111911572_changedComments.resx">
+      <DependentUpon>202103111911572_changedComments.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
