@@ -19,6 +19,15 @@ namespace BookLover.Data
         [Required]
         public string Genre { get; set; }
 
+        public static List<string> ValidGenres
+        {
+            get
+            {
+                return new List<string> { "Horror","Fantasy","Romance","Science Fiction","Thriller","Mystery",
+                    "Young Adult","Historical Fiction","Nonfiction"};
+            }
+        }
+
         [MaxLength(500)]
         public string Description { get; set; }
         public double AverageRating
