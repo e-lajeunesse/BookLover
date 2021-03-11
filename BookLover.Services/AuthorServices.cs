@@ -40,28 +40,6 @@ namespace BookLover.Services
             }
         }
 
-        /*public IEnumerable<AuthorListItems> GetAuthors()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Authors                        
-                        .Select(
-                            a =>
-                                new AuthorListItems
-                                {
-                                    AuthorId = a.AuthorId,
-                                    FirstName = a.FirstName,
-                                    LastName = a.LastName,
-                                    Description = a.Description
-                                }
-                        );
-
-                return query.ToArray();
-            }
-        }*/
-
         public AuthorDetail GetAuthorById(int authorId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -149,6 +127,19 @@ namespace BookLover.Services
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
+                        Books = entity.BookList.Select(b => new BookListItem
+                        {
+                            BookId = b.BookId,
+                            Title = b.Title,
+                            Genre = b.Genre,
+                            Description = b.Description,
+                            BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+                            {
+                                ReviewId = br.ReviewId,
+                                ReviewText = br.ReviewText,
+                                BookRating = br.BookRating,
+                            }).ToList(),
+                        }).ToList(),
                     };
 
             }
@@ -175,13 +166,18 @@ namespace BookLover.Services
                         ReviewText = br.ReviewText,
                         BookRating = br.BookRating,
                     }).ToList(),
-                }).ToList(),              
+                }).ToList(),
             }).ToList();
 
-                return authorListItems;
+            return authorListItems;
         }
+
+ 
+
+
     }
 }
+                
 
        
 

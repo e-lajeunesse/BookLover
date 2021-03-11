@@ -20,5 +20,6 @@ namespace BookLover.Models.BookModels
         //Ben's changes
         public int AuthorId { get; set; }
         public AuthorListItems Author { get; set; }
+        
     }
 }
