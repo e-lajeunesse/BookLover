@@ -10,8 +10,9 @@ namespace BookLover.Data
     public class UserProfile
     {
         [Key]
+        public int UserProfileId { get; set; }
         public Guid OwnerId { get; set; }
-        public List<string> BooksToRead { get; set; }
+        public List<Book> BooksToRead { get; set; }
         public string UserName { get; set; }
     }
 }
