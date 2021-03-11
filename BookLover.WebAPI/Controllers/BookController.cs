@@ -37,6 +37,7 @@ namespace BookLover.WebAPI.Controllers
             return Ok();
         }
 
+        //Ben's changes
         [HttpGet]
         public IHttpActionResult GetBooks()
         {
@@ -55,6 +56,15 @@ namespace BookLover.WebAPI.Controllers
                 return Ok(books);
             }
             return Ok($"No books found for genre: {genre}");
+        }
+
+        [HttpGet]
+        [System.Web.Http.Route("api/BooksByRating")]
+        public IHttpActionResult SortBooksByRating()
+        {
+            BookService service = CreateBookService();
+            List<BookListItem> books = service.SortBooksByRating();
+            return Ok(books);
         }
 
         [HttpGet]
@@ -100,13 +110,6 @@ namespace BookLover.WebAPI.Controllers
             return Ok();
         }
 
-        //Ben's changes
-        [HttpGet]
-        public IHttpActionResult GetBooksByAuthor(string firstName, string lastName)
-        {
-            BookService service = CreateBookService();
-            List<BookListItem> books = service.GetBooksByAuthor();
-            return Ok(books);
-        }
+
     }
 }
