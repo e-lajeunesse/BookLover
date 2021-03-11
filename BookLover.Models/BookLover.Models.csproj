@@ -76,6 +76,8 @@
     <Compile Include="CommentModels\CommentDisplayItem.cs" />
     <Compile Include="CommentModels\CommentListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserProfileModels\UserProfileCreate.cs" />
+    <Compile Include="UserProfileModels\UserProfileListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -87,5 +89,6 @@
       <Name>BookLover.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

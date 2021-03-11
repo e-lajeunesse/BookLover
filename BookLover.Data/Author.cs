@@ -21,8 +21,10 @@ namespace BookLover.Data
 
         public virtual List<Book> BookList { get; set; }
 
+        // public virtual List<Book> BookList { get; set; }
 
         // public virtual List<BookReview> Reviews { get; set; }
+
     }
 }
 
