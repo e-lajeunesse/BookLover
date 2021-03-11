@@ -66,7 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookLover.Data\BookLover.Data.csproj">
-      <Project>{507FBB87-3D5F-439B-BAB5-7DC73074D6BE}</Project>
+      <Project>{507fbb87-3d5f-439b-bab5-7dc73074d6be}</Project>
       <Name>BookLover.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookLover.Models\BookLover.Models.csproj">
