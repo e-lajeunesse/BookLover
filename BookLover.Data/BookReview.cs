@@ -19,6 +19,8 @@ namespace BookLover.Data
         public DateTimeOffset CreatedReview { get; set; }
         public double BookRating { get; set; }
 
+        public virtual List<Comment> Comments { get; set; }
+
         [ForeignKey(nameof(Book))]
         public int BookId { get; set; }
         public virtual Book Book { get; set; }
