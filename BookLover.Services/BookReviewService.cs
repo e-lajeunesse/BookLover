@@ -58,7 +58,6 @@ namespace BookLover.Services
             return bookReviewListItems;
         }
 
-
         public BookReviewDetail GetReviewById(int Id)
         {
             BookReview reviewToGet = _context.BookReviews.Single(br => br.ReviewId == Id);
@@ -76,7 +75,6 @@ namespace BookLover.Services
                     Genre = reviewToGet.Book.Genre,
                     Description = reviewToGet.Book.Description,
                 }
-                // Books = reviewToGet.Books
             };
 
             return bookReview;
