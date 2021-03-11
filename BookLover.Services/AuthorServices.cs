@@ -64,7 +64,7 @@ namespace BookLover.Services
             {
                 var entity =
                     ctx
-                        .Authors                        
+                        .Authors
                         .Single(a => a.AuthorId == authorId);
                 return
                     new AuthorDetail
@@ -84,7 +84,7 @@ namespace BookLover.Services
             {
                 var entity =
                     ctx
-                        .Authors                        
+                        .Authors
                         .Single(a => a.AuthorId == authorId);
 
                 ctx.Authors.Remove(entity);
@@ -98,7 +98,7 @@ namespace BookLover.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
-                    .Authors                    
+                    .Authors
                     .FirstOrDefault(a => a.AuthorId == model.AuthorId);
 
                 entity.FirstName = model.FirstName;
