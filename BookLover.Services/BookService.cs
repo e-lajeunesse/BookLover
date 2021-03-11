@@ -63,9 +63,23 @@ namespace BookLover.Services
         public List<BookListItem> SortByGenreAndRating()
         {
             List<Book> allBooks = _context.Books.ToList();
-            List<Book> sortedBooks = allBooks.OrderBy(b => b.Genre)
+            List<Book> sortedBooks = allBooks.OrderBy(b => b.Genre.ToLower())
                 .ThenByDescending(b => b.AverageRating).ToList();
             return sortedBooks.Select(b => CreateBookListItem(b)).ToList();
+        }
+
+        public List<BookListItem> GetBooksByAuthorId(int id)
+        {
+            List<Book> matchingBooks = _context.Books.Where(b => b.AuthorId == id).ToList();
+            return matchingBooks.Select(b => CreateBookListItem(b)).ToList();
+        }
+
+        public List<BookListItem> GetBooksByAuthorName(string firstName, string lastName)
+        {
+            List<Book> matchingBooks = _context.Books.Where(b =>
+                b.Author.FirstName.ToLower() == firstName.ToLower()
+                && b.Author.LastName.ToLower() == lastName.ToLower()).ToList();
+            return matchingBooks.Select(b => CreateBookListItem(b)).ToList();
         }
 
         public BookDetail GetBookById(int id)
@@ -82,9 +96,7 @@ namespace BookLover.Services
                 return default;
             }
             return CreateBookDetail(bookToGet);
-        }
-
-        
+        }        
 
         public bool UpdateBook(BookEdit model)
         {
@@ -120,10 +132,9 @@ namespace BookLover.Services
                     BookRating = br.BookRating,
                 }).ToList(),
                 AuthorId = model.AuthorId,
-                Author = new AuthorListItems
+                Author = new AuthorDisplayItem
                 {
-                    FirstName = model.Author.FirstName,
-                    LastName = model.Author.LastName
+                    FullName = model.Author.FirstName + " " + model.Author.LastName
                 }
             };
         }
@@ -144,10 +155,10 @@ namespace BookLover.Services
                     ReviewText = br.ReviewText,
                     BookRating = br.BookRating,
                 }).ToList(),
-                Author = new AuthorListItems
-                {
-                    FirstName = model.Author.FirstName,
-                    LastName = model.Author.LastName
+                AuthorId = model.AuthorId,
+                Author = new AuthorDisplayItem
+                {                    
+                    FullName = model.Author.FirstName + " " + model.Author.LastName
                 }
             };
             return book;
