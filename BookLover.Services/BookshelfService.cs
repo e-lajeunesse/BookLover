@@ -34,7 +34,24 @@ namespace BookLover.Services
             return _context.SaveChanges() > 0;
         }
 
-        public List<BookshelfDisplay> GetAllBookShelves()
+        public List<BookshelfDisplay> GetAllBookshelves()
+        {
+            List<BookshelfDisplay> allBookshelves = _context.Bookshelves.
+                Select(s => new BookshelfDisplay
+                {
+                    BookshelfId = s.BookshelfId,
+                    Title = s.Title,
+                    Books = s.Books.Select(b => new BookshelfBookDisplay
+                    {
+                        BookId = b.BookId,
+                        Title = b.Title,
+                    }).ToList()
+                }).ToList();
+
+            return allBookshelves;
+        }
+
+        public List<BookshelfDisplay> GetAllBookShelvesByOwner()
         {
             List<BookshelfDisplay> allBookshelves = _context.Bookshelves.Where(s => s.OwnerId == _userId).
                 Select(s => new BookshelfDisplay
