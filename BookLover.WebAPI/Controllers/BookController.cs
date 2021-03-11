@@ -1,4 +1,5 @@
-﻿using BookLover.Models.BookModels;
+﻿using BookLover.Data;
+using BookLover.Models.BookModels;
 using BookLover.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -27,6 +28,15 @@ namespace BookLover.WebAPI.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+            if (!Book.ValidGenres.Select(g => g.ToLower()).ToList().Contains(model.Genre.ToLower()))
+            {
+                string message = "Genre must be one of the following: ";
+                foreach (string genre in Book.ValidGenres)
+                {
+                    message += $"{genre}, ";
+                }
+                return BadRequest(message);
             }
 
             BookService service = CreateBookService();
