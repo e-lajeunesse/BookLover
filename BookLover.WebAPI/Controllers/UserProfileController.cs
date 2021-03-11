@@ -21,11 +21,19 @@ namespace BookLover.WebAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get()
+        public IHttpActionResult GetAllProfiles()
         {
             UserProfileService userProfileService = CreateUserProfileService();
-            List<UserProfileListItem> userProfiles = userProfileService.GetUserProfiles();
+            List<UserProfileDisplay> userProfiles = userProfileService.GetAllUserProfiles();
             return Ok(userProfiles);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetUserById(int id)
+        {
+            UserProfileService userProfileService = CreateUserProfileService();
+            UserProfileDisplay profileDisplay = userProfileService.GetUserById(id);
+            return Ok(profileDisplay);
         }
 
         [HttpPost]
