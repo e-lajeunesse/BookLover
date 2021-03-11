@@ -18,10 +18,10 @@ namespace BookLover.Models
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters")]
         public string LastName { get; set; }
-        public List<string> Books { get; set; }
-
         public string Description { get; set; }
 
-       
+
+        //public List<Book> BookList { get; set; }
+
     }
 }
