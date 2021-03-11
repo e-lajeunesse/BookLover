@@ -1,5 +1,6 @@
 ﻿// using BookLover.Data;
 using BookLover.Models.BookModels;
+using BookLover.Models.CommentModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,5 +25,7 @@ namespace BookLover.Models.BookReviewModels
         public int BookId { get; set; }
         public BookDisplayItem Book { get; set; }
         // public List<BookReviewDisplayItem> Books { get; set; }
+
+        public List<CommentDisplayItem> Comments { get; set; }
     }
 }

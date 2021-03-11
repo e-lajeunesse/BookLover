@@ -47,5 +47,22 @@ namespace BookLover.Services
             }).ToList();
             return allComments;
         }
+
+        public bool EditComment(CommentEdit model)
+        {
+            Comment commentToEdit = _context.Comments.Single(c => c.CommentId == model.CommentId && _userId == c.OwnerId);
+            commentToEdit.CommentText = model.CommentText;
+            commentToEdit.ReviewId = model.ReviewId;
+            return _context.SaveChanges() == 1;
+        }
+
+        public bool DeleteComment(int id)
+        {
+
+            Comment commentToDelete = _context.Comments.Single(c => c.CommentId == id && c.OwnerId == _userId);
+            _context.Comments.Remove(commentToDelete);
+
+            return _context.SaveChanges() == 1;
+        }
     }
 }
