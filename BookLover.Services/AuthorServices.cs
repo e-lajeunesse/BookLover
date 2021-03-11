@@ -1,5 +1,7 @@
 ﻿using BookLover.Data;
 using BookLover.Models;
+using BookLover.Models.BookModels;
+using BookLover.Models.BookReviewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,6 +13,8 @@ namespace BookLover.Services
 {
     public class AuthorServices
     {
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+
         private readonly Guid _userId;
 
         public AuthorServices(Guid userId)
@@ -22,7 +26,7 @@ namespace BookLover.Services
         {
             var entity =
                 new Author()
-                {                    
+                {
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     AuthorId = model.AuthorId,
@@ -36,7 +40,7 @@ namespace BookLover.Services
             }
         }
 
-        public IEnumerable<AuthorListItems> GetAuthors()
+        /*public IEnumerable<AuthorListItems> GetAuthors()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -56,7 +60,7 @@ namespace BookLover.Services
 
                 return query.ToArray();
             }
-        }
+        }*/
 
         public AuthorDetail GetAuthorById(int authorId)
         {
@@ -69,7 +73,7 @@ namespace BookLover.Services
                 return
                     new AuthorDetail
                     {
-                        AuthorId = entity.AuthorId,                        
+                        AuthorId = entity.AuthorId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
@@ -126,7 +130,7 @@ namespace BookLover.Services
                         LastName = entity.LastName,
                         Description = entity.Description,
                     };
-                
+
             }
         }
 
@@ -150,5 +154,47 @@ namespace BookLover.Services
             }
         }
 
-    }          
+        public List<AuthorListItems> GetAuthors()
+        {
+            List<Author> authors = _context.Authors.ToList();
+            List<AuthorListItems> authorListItems = authors.Select(a => new AuthorListItems()
+            {
+                AuthorId = a.AuthorId,
+                FirstName = a.FirstName,
+                LastName = a.LastName,
+                Description = a.Description,
+                Books = a.BookList.Select(b => new BookListItem
+                {
+                    BookId = b.BookId,
+                    Title = b.Title,
+                    Genre = b.Genre,
+                    Description = b.Description,
+                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+                    {
+                        ReviewId = br.ReviewId,
+                        ReviewText = br.ReviewText,
+                        BookRating = br.BookRating,
+                    }).ToList(),
+                }).ToList(),              
+            }).ToList();
+
+                return authorListItems;
+        }
+    }
 }
+
+       
+
+       
+        
+        
+        
+        
+       
+
+
+
+
+
+
+
