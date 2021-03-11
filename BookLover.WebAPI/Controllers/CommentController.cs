@@ -42,5 +42,45 @@ namespace BookLover.WebAPI.Controllers
             var comments = service.GetAllComments();
             return Ok(comments);
         }
+
+        [HttpPut]
+        public IHttpActionResult EditComment(CommentEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            CommentService service = CreateCommentService();
+            try
+            {
+                if (!service.EditComment(model))
+                {
+                    return InternalServerError();
+                }
+                return Ok();
+            }
+            catch (System.InvalidOperationException)
+            {
+                return BadRequest("Users can only edit their own comments");
+            }
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteComment(int id)
+        {
+            CommentService service = CreateCommentService();
+            try
+            {
+                if (!service.DeleteComment(id))
+                {
+                    return InternalServerError();
+                }
+                return Ok();
+            }
+            catch (System.InvalidOperationException)
+            {
+                return BadRequest("Users can only delete their own comments");
+            }
+        }
     }
 }

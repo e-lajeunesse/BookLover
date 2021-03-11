@@ -81,7 +81,11 @@ namespace BookLover.Services
                     Genre = reviewToGet.Book.Genre,
                     Description = reviewToGet.Book.Description,
                 },
-                Comments = reviewToGet.Comments.Select(c => )
+                Comments = reviewToGet.Comments.Select(c => new CommentDisplayItem() 
+                {
+                    CommentId = c.CommentId,
+                    CommentText = c.CommentText
+                }).ToList()
             };
 
             return bookReview;
