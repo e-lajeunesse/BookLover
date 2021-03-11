@@ -14,7 +14,7 @@ namespace BookLover.Services
     public class BookService
     {
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
-        private readonly Guid _userId;        
+        private readonly Guid _userId;
         private Random rand = new Random();
 
         public BookService(Guid userId)
@@ -36,111 +36,111 @@ namespace BookLover.Services
             return _context.SaveChanges() == 1;
         }
 
-        //Ben's changes
+        
         public List<BookListItem> GetAllBooks()
         {
             List<Book> books = _context.Books.ToList();
-            List<BookListItem> bookListItems = books.Select(b => new BookListItem()
-            {
-                BookId = b.BookId,
-                Title = b.Title,
-                Genre = b.Genre,
-                Description = b.Description,
-                BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
-                {
-                    ReviewId = br.ReviewId,
-                    ReviewText = br.ReviewText,
-                    BookRating = br.BookRating,
-                }).ToList(),
-                AuthorId = b.AuthorId,
-                Author = new AuthorListItems
-                {
-                    FirstName = b.Author.FirstName,
-                    LastName = b.Author.LastName
-                }
-            }).ToList();
-
+            List<BookListItem> bookListItems = books.Select(b => CreateBookListItem(b)).ToList();
             return bookListItems;
         }
 
         public List<BookListItem> GetBooksByGenre(string genre)
         {
             List<Book> allBooks = _context.Books.ToList();
-            return allBooks.Where(b => b.Genre.ToLower() == genre.ToLower()).
-                Select(b => new BookListItem()
-                {
-                    BookId = b.BookId,
-                    Title = b.Title,
-                    Genre = b.Genre,
-                    Description = b.Description,
-                    AverageRating = b.AverageRating,
-                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
-                    {
-                        ReviewId = br.ReviewId,
-                        ReviewText = br.ReviewText,
-                        BookRating = br.BookRating,
-                    }).ToList()
-                }).ToList();
+            return allBooks.Where(b => b.Genre.ToLower().Contains(genre.ToLower())
+                || genre.ToLower().Contains(b.Genre.ToLower())).
+                Select(b => CreateBookListItem(b)).ToList();
+
         }
 
         public List<BookListItem> SortBooksByRating()
         {
             List<Book> allBooks = _context.Books.ToList();
             List<Book> sortedBooks = allBooks.OrderByDescending(b => b.AverageRating).ToList();
-            return sortedBooks.Select(b => new BookListItem()
-            {
-                BookId = b.BookId,
-                Title = b.Title,
-                Genre = b.Genre,
-                Description = b.Description,
-                AverageRating = b.AverageRating
-            }).ToList();
+            return sortedBooks.Select(b => CreateBookListItem(b)).ToList();
         }
 
         public BookDetail GetBookById(int id)
         {
             Book bookToGet = _context.Books.Single(b => b.BookId == id);
-
-            BookDetail book = new BookDetail()
-            {
-                BookId = bookToGet.BookId,
-                Title = bookToGet.Title,
-                Genre = bookToGet.Genre,
-                Description = bookToGet.Description,
-                AverageRating = bookToGet.AverageRating,
-                RecommendedBooks = GetRecommendedBooks(bookToGet),
-                BookReviews = bookToGet.BookReviews.Select(br => new BookReviewDisplayItem
-                {
-                    ReviewId = br.ReviewId,
-                    ReviewText = br.ReviewText,
-                    BookRating = br.BookRating,
-                }).ToList()
-            };
-            return book;
+            return CreateBookDetail(bookToGet);
         }
 
         public BookDetail GetBookByTitle(string title)
         {
-            Book bookToGet = _context.Books.FirstOrDefault(b => b.Title.ToLower() == title.ToLower());
+            Book bookToGet = _context.Books.FirstOrDefault(b => b.Title.ToLower().Contains(title));
             if (bookToGet == default)
             {
                 return default;
             }
-            BookDetail book = new BookDetail
+            return CreateBookDetail(bookToGet);
+        }
+
+        
+
+        public bool UpdateBook(BookEdit model)
+        {
+            Book bookToEdit = _context.Books.Single(b => b.BookId == model.BookId);
+            bookToEdit.Title = model.Title;
+            bookToEdit.Genre = model.Genre;
+            bookToEdit.Description = model.Description;
+            return _context.SaveChanges() == 1;
+        }
+
+        public bool DeleteBook(int bookId)
+        {
+            Book bookToDelete = _context.Books.Single(b => b.BookId == bookId);
+            _context.Books.Remove(bookToDelete);
+            return _context.SaveChanges() == 1;
+        }
+
+        //Helper Methods
+        public BookListItem CreateBookListItem(Book model)
+        {
+            return new BookListItem()
             {
-                BookId = bookToGet.BookId,
-                Title = bookToGet.Title,
-                Genre = bookToGet.Genre,
-                Description = bookToGet.Description,
-                AverageRating = bookToGet.AverageRating,
-                RecommendedBooks = GetRecommendedBooks(bookToGet),
-                BookReviews = bookToGet.BookReviews.Select(br => new BookReviewDisplayItem
+
+                BookId = model.BookId,
+                Title = model.Title,
+                Genre = model.Genre,
+                Description = model.Description,
+                AverageRating = model.AverageRating,
+                BookReviews = model.BookReviews.Select(br => new BookReviewDisplayItem
                 {
                     ReviewId = br.ReviewId,
                     ReviewText = br.ReviewText,
                     BookRating = br.BookRating,
-                }).ToList()
-                // BookReviews = bookToGet.BookReviews
+                }).ToList(),
+                AuthorId = model.AuthorId,
+                Author = new AuthorListItems
+                {
+                    FirstName = model.Author.FirstName,
+                    LastName = model.Author.LastName
+                }
+            };
+        }
+
+        public BookDetail CreateBookDetail(Book model)
+        {
+            BookDetail book = new BookDetail
+            {
+                BookId = model.BookId,
+                Title = model.Title,
+                Genre = model.Genre,
+                Description = model.Description,
+                AverageRating = model.AverageRating,
+                RecommendedBooks = GetRecommendedBooks(model),
+                BookReviews = model.BookReviews.Select(br => new BookReviewDisplayItem
+                {
+                    ReviewId = br.ReviewId,
+                    ReviewText = br.ReviewText,
+                    BookRating = br.BookRating,
+                }).ToList(),
+                Author = new AuthorListItems
+                {
+                    FirstName = model.Author.FirstName,
+                    LastName = model.Author.LastName
+                }
             };
             return book;
         }
@@ -167,24 +167,5 @@ namespace BookLover.Services
 
             return recommendedBooks;
         }
-
-        public bool UpdateBook(BookEdit model)
-        {
-            Book bookToEdit = _context.Books.Single(b => b.BookId == model.BookId);
-            bookToEdit.Title = model.Title;
-            bookToEdit.Genre = model.Genre;
-            bookToEdit.Description = model.Description;
-            return _context.SaveChanges() == 1;
-        }
-
-        public bool DeleteBook(int bookId)
-        {
-            Book bookToDelete = _context.Books.Single(b => b.BookId == bookId);
-            _context.Books.Remove(bookToDelete);
-            return _context.SaveChanges() == 1;
-        }
-
-
-
     }
 }
