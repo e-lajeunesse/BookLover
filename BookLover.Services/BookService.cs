@@ -60,6 +60,14 @@ namespace BookLover.Services
             return sortedBooks.Select(b => CreateBookListItem(b)).ToList();
         }
 
+        public List<BookListItem> SortByGenreAndRating()
+        {
+            List<Book> allBooks = _context.Books.ToList();
+            List<Book> sortedBooks = allBooks.OrderBy(b => b.Genre)
+                .ThenByDescending(b => b.AverageRating).ToList();
+            return sortedBooks.Select(b => CreateBookListItem(b)).ToList();
+        }
+
         public BookDetail GetBookById(int id)
         {
             Book bookToGet = _context.Books.Single(b => b.BookId == id);

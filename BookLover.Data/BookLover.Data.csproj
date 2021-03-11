@@ -88,6 +88,7 @@
     <Compile Include="Author.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

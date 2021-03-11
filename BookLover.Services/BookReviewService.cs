@@ -2,6 +2,7 @@
 using BookLover.Models;
 using BookLover.Models.BookModels;
 using BookLover.Models.BookReviewModels;
+using BookLover.Models.CommentModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,11 @@ namespace BookLover.Services
                 ReviewText = br.ReviewText,
                 CreatedReview = br.CreatedReview,
                 BookRating = br.BookRating,
+                Comments = br.Comments.Select(c => new CommentDisplayItem
+                {
+                    CommentId = c.CommentId,
+                    CommentText = c.CommentText
+                }).ToList(),
                 BookId = br.BookId,
                 Book = new BookDisplayItem
                 {
