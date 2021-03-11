@@ -25,12 +25,17 @@ namespace BookLover.Data
         {
             get
             {
-                return BookReviews.Select(r => r.BookRating).Sum() / BookReviews.Count;
+                if (BookReviews.Count > 0)
+                {
+                    return BookReviews.Select(r => r.BookRating).Sum() / BookReviews.Count;
+                }
+                return 0;
             }
         }
+                       
 
         public virtual List<BookReview> BookReviews { get; set; }
-        public virtual List<Bookshelf> Bookshelves { get; set; }
+        public virtual List<Bookshelf> Bookshelves { get; set; } 
 
         [ForeignKey(nameof(Author))]
         public int AuthorId { get; set; }

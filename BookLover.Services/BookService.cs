@@ -36,23 +36,31 @@ namespace BookLover.Services
             return _context.SaveChanges() == 1;
         }
 
+        //Ben's changes
         public List<BookListItem> GetAllBooks()
         {
-            List<Book> allBooks = _context.Books.ToList();
-            return allBooks.Select(b => new BookListItem()
+            List<Book> books = _context.Books.ToList();
+            List<BookListItem> bookListItems = books.Select(b => new BookListItem()
             {
                 BookId = b.BookId,
                 Title = b.Title,
                 Genre = b.Genre,
                 Description = b.Description,
-                AverageRating = b.AverageRating,
                 BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
                 {
                     ReviewId = br.ReviewId,
                     ReviewText = br.ReviewText,
                     BookRating = br.BookRating,
-                }).ToList()
+                }).ToList(),
+                AuthorId = b.AuthorId,
+                Author = new AuthorListItems
+                {
+                    FirstName = b.Author.FirstName,
+                    LastName = b.Author.LastName
+                }
             }).ToList();
+
+            return bookListItems;
         }
 
         public List<BookListItem> GetBooksByGenre(string genre)
@@ -73,6 +81,20 @@ namespace BookLover.Services
                         BookRating = br.BookRating,
                     }).ToList()
                 }).ToList();
+        }
+
+        public List<BookListItem> SortBooksByRating()
+        {
+            List<Book> allBooks = _context.Books.ToList();
+            List<Book> sortedBooks = allBooks.OrderByDescending(b => b.AverageRating).ToList();
+            return sortedBooks.Select(b => new BookListItem()
+            {
+                BookId = b.BookId,
+                Title = b.Title,
+                Genre = b.Genre,
+                Description = b.Description,
+                AverageRating = b.AverageRating
+            }).ToList();
         }
 
         public BookDetail GetBookById(int id)
@@ -162,26 +184,7 @@ namespace BookLover.Services
             return _context.SaveChanges() == 1;
         }
 
-        //Ben's changes
-        public List<BookListItem> GetBooksByAuthor()
-        {
-            List<Book> books = _context.Books.ToList();
-            List<BookListItem> bookListItems = books.Select(b => new BookListItem()
-            {
-                BookId = b.BookId,
-                Title = b.Title,
-                Genre = b.Genre,
-                Description = b.Description,
-                AuthorId = b.AuthorId,
-                Author = new AuthorListItems
-                {
-                    FirstName = b.Author.FirstName,
-                    LastName = b.Author.LastName
-                }
-            }).ToList();
 
-            return bookListItems;
-        }
 
     }
 }

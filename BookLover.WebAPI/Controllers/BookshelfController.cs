@@ -38,10 +38,19 @@ namespace BookLover.WebAPI.Controllers
         }
 
         [HttpGet]
+        [System.Web.Http.Route("api/GetAllBookshelves")]
         public IHttpActionResult GetAllBookshelves()
         {
             BookshelfService service = CreateBookshelfService();
-            List<BookshelfDisplay> bookshelves = service.GetAllBookShelves();
+            List<BookshelfDisplay> bookshelves = service.GetAllBookshelves();
+            return Ok(bookshelves);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAllBookshelvesByOwner()
+        {
+            BookshelfService service = CreateBookshelfService();
+            List<BookshelfDisplay> bookshelves = service.GetAllBookShelvesByOwner();
             return Ok(bookshelves);
         }
 
