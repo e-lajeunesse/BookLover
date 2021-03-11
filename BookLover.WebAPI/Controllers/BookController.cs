@@ -102,7 +102,7 @@ namespace BookLover.WebAPI.Controllers
 
         //Ben's changes
         [HttpGet]
-        public IHttpActionResult GetBooksByAuthor()
+        public IHttpActionResult GetBooksByAuthor(string firstName, string lastName)
         {
             BookService service = CreateBookService();
             List<BookListItem> books = service.GetBooksByAuthor();

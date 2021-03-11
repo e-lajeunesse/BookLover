@@ -28,8 +28,8 @@ namespace BookLover.Services
             {
                 Title = model.Title,
                 Genre = model.Genre,
-                Description = model.Description
-                //AuthorId = model.AuthorId
+                Description = model.Description,
+                AuthorId = model.AuthorId
             };
 
             _context.Books.Add(book);

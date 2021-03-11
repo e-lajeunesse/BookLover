@@ -65,12 +65,11 @@ namespace BookLover.Services
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
+                        .Single(a => a.AuthorId == authorId);
                 return
                     new AuthorDetail
                     {
-                        AuthorId = entity.AuthorId,
-                        UserId = entity.UserId,
+                        AuthorId = entity.AuthorId,                        
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
@@ -86,7 +85,7 @@ namespace BookLover.Services
                 var entity =
                     ctx
                         .Authors
-                        .Single(a => a.AuthorId == authorId && a.UserId == _userId);
+                        .Single(a => a.AuthorId == authorId);
 
                 ctx.Authors.Remove(entity);
 
@@ -100,7 +99,7 @@ namespace BookLover.Services
             {
                 var entity = ctx
                     .Authors
-                    .FirstOrDefault(a => a.AuthorId == model.AuthorId && a.UserId == _userId);
+                    .FirstOrDefault(a => a.AuthorId == model.AuthorId);
 
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
