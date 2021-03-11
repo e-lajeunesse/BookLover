@@ -80,7 +80,8 @@ namespace BookLover.Services
                     Title = reviewToGet.Book.Title,
                     Genre = reviewToGet.Book.Genre,
                     Description = reviewToGet.Book.Description,
-                }
+                },
+                Comments = reviewToGet.Comments.Select(c => )
             };
 
             return bookReview;

@@ -178,7 +178,7 @@ namespace BookLover.Services
                 }).ToList(),              
             }).ToList();
 
-                return authorListItems;
+            return authorListItems;
         }
     }
 }
