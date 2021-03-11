@@ -52,5 +52,33 @@ namespace BookLover.WebAPI.Controllers
             }
             return Ok();
         }
+
+        [HttpPut]
+        public IHttpActionResult UpdateUserProfile(UserProfileEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userProfileService = CreateUserProfileService();
+
+            if (!userProfileService.UpdateUserProfile(model))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult DeleteProfileById(int id)
+        {
+            UserProfileService service = CreateUserProfileService();
+            if (service.DeleteUserProfile(id))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
     }
 }

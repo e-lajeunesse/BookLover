@@ -79,5 +79,27 @@ namespace BookLover.Services
 
             return profileDisplay;
         }
+
+        public bool UpdateUserProfile(UserProfileEdit model)
+        {
+            UserProfile profileToEdit = _context.UserProfiles.Single(up => up.UserProfileId == model.UserProfileId);
+            profileToEdit.UserName = model.UserName;
+            profileToEdit.BooksToRead = _context.Books.Where(up => model.BookIds.Contains(up.BookId)).ToList();
+
+            List<Book> booksToRemove = profileToEdit.BooksToRead.Where(up => !model.BookIds.Contains(up.BookId)).ToList();
+            foreach (Book book in booksToRemove)
+            {
+                profileToEdit.BooksToRead.Remove(book);
+            }
+
+            return _context.SaveChanges() > 0;
+        }
+
+        public bool DeleteUserProfile(int id)
+        {
+            UserProfile profileToDelete = _context.UserProfiles.Single(up => up.UserProfileId == id);
+            _context.UserProfiles.Remove(profileToDelete);
+            return _context.SaveChanges() == 1;
+        }
     }
 }
