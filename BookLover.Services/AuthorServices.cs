@@ -107,6 +107,19 @@ namespace BookLover.Services
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Description = entity.Description,
+                        Books = entity.BookList.Select(b => new BookListItem
+                        {
+                            BookId = b.BookId,
+                            Title = b.Title,
+                            Genre = b.Genre,
+                            Description = b.Description,
+                            BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+                            {
+                                ReviewId = br.ReviewId,
+                                ReviewText = br.ReviewText,
+                                BookRating = br.BookRating,
+                            }).ToList(),
+                        }).ToList(),
                     };
 
             }
@@ -140,8 +153,7 @@ namespace BookLover.Services
                                 BookRating = br.BookRating,
                             }).ToList(),
                         }).ToList(),
-                    };
-
+                    };               
             }
         }
 

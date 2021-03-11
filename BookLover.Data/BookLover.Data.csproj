@@ -100,10 +100,5 @@
   <ItemGroup>
     <Content Include="Seed.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103111957117_update5.resx">
-      <DependentUpon>202103111957117_update5.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
