@@ -89,6 +89,11 @@
     <Compile Include="Book.cs" />
     <Compile Include="Bookshelf.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="Migrations\202103121438241_initial.cs" />
+    <Compile Include="Migrations\202103121438241_initial.Designer.cs">
+      <DependentUpon>202103121438241_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserProfile.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +104,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Seed.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202103121438241_initial.resx">
+      <DependentUpon>202103121438241_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

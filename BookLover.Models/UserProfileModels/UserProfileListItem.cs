@@ -15,5 +15,7 @@ namespace BookLover.Models.UserProfileModels
         public List<Book> BooksToRead { get; set; }
         [Display(Name="UserCreated")]
         public DateTimeOffset CreatedUser { get; set; }
+
+       
     }
 }
