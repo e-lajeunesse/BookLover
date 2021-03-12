@@ -14,12 +14,12 @@ namespace BookLover.Models.BookModels
         public string Genre { get; set; }
         public string Description { get; set; }
         public double AverageRating { get; set; }
-        public List<BookReviewDisplayItem> BookReviews { get; set; }
 
 
         //Ben's changes
         public int AuthorId { get; set; }
-        public AuthorListItems Author { get; set; }
+        public AuthorDisplayItem Author { get; set; }
+        public List<BookReviewDisplayItem> BookReviews { get; set; }
         
     }
 }

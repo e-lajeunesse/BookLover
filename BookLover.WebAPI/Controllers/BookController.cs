@@ -78,11 +78,37 @@ namespace BookLover.WebAPI.Controllers
         }
 
         [HttpGet]
+        [System.Web.Http.Route("api/BooksByGenreAndRating")]
+        public IHttpActionResult SortBooksByGenreAndRating()
+        {
+            BookService service = CreateBookService();
+            List<BookListItem> books = service.SortByGenreAndRating();
+            return Ok(books);
+        }
+
+        [HttpGet]
         public IHttpActionResult GetBookById(int id)
         {
             BookService service = CreateBookService();
             BookDetail book = service.GetBookById(id);
             return Ok(book);
+        }
+
+        [HttpGet]
+        [System.Web.Http.Route("api/BooksByAuthorId")]
+        public IHttpActionResult GetBooksByAuthorId(int id)
+        {
+            BookService service = CreateBookService();
+            List<BookListItem> books = service.GetBooksByAuthorId(id);
+            return Ok(books);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetBooksByAuthorName(string firstName, string lastName)
+        {
+            BookService service = CreateBookService();
+            List<BookListItem> books = service.GetBooksByAuthorName(firstName, lastName);
+            return Ok(books);
         }
 
         [HttpGet]

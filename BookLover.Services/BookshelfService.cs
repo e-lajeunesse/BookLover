@@ -20,6 +20,7 @@ namespace BookLover.Services
 
         public bool CreateBookshelf(BookshelfCreate model)
         {
+            UserProfile profile = _context.UserProfiles.Single(p => p.OwnerId == _userId);
             List<Book> allBooks = _context.Books.ToList();
 
             Bookshelf shelf = new Bookshelf()
@@ -27,7 +28,8 @@ namespace BookLover.Services
                 Title = model.Title,
                 OwnerId = _userId,
                 BookIds = model.BookIds,
-                Books = allBooks.Where(b => model.BookIds.Contains(b.BookId)).ToList()
+                Books = allBooks.Where(b => model.BookIds.Contains(b.BookId)).ToList(),
+                UserProfileId = profile.UserProfileId
             };
 
             _context.Bookshelves.Add(shelf);

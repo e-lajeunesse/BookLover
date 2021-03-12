@@ -1,4 +1,5 @@
 ﻿using BookLover.Data;
+using BookLover.Models.BookshelfModels;
 using BookLover.Models.UserProfileModels;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,16 @@ namespace BookLover.Services
                     {
                         BookId = btr.BookId,
                         Title = btr.Title,
+                    }).ToList(),
+                    Bookshelves = upd.Bookshelves.Select(bs => new BookshelfDisplay
+                    {
+                        BookshelfId = bs.BookshelfId,
+                        Title = bs.Title,
+                        Books = bs.Books.Select(b => new BookshelfBookDisplay
+                        {
+                            BookId = b.BookId,
+                            Title = b.Title
+                        }).ToList()
                     }).ToList()
                 }).ToList();
 
@@ -79,6 +90,8 @@ namespace BookLover.Services
 
             return profileDisplay;
         }
+
+
 
         public bool UpdateUserProfile(UserProfileEdit model)
         {
