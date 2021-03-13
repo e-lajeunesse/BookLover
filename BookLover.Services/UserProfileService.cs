@@ -24,6 +24,12 @@ namespace BookLover.Services
         {
             List<Book> allBooks = _context.Books.ToList();
 
+            //Throw exception if DB already contains a profile for this userId
+            if (_context.UserProfiles.Select(p => p.OwnerId).Contains(_userId))
+            {
+                throw new Exception("A profile for this user already exists.");
+            }
+
             UserProfile userProfile = new UserProfile()
             {
                 OwnerId = _userId,

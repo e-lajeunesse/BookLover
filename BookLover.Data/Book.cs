@@ -30,6 +30,14 @@ namespace BookLover.Data
 
         [MaxLength(500)]
         public string Description { get; set; }
+
+        public int ReviewCount 
+        { 
+            get
+            {
+                return BookReviews.Count;
+            }
+        }
         public double AverageRating
         {
             get

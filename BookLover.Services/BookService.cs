@@ -124,12 +124,7 @@ namespace BookLover.Services
                 Genre = model.Genre,
                 Description = model.Description,
                 AverageRating = model.AverageRating,
-/*                BookReviews = model.BookReviews.Select(br => new BookReviewDisplayItem
-                {
-                    ReviewId = br.ReviewId,
-                    ReviewText = br.ReviewText,
-                    BookRating = br.BookRating,
-                }).ToList(),*/
+                ReviewCount = model.ReviewCount,
                 AuthorId = model.AuthorId,
                 Author = new AuthorDisplayItem
                 {
@@ -147,6 +142,7 @@ namespace BookLover.Services
                 Genre = model.Genre,
                 Description = model.Description,
                 AverageRating = model.AverageRating,
+                ReviewCount = model.ReviewCount,
                 RecommendedBooks = GetRecommendedBooks(model),
                 BookReviews = model.BookReviews.Select(br => new BookReviewDisplayItem
                 {

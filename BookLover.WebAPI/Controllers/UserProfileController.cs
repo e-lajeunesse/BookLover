@@ -45,12 +45,20 @@ namespace BookLover.WebAPI.Controllers
             }
             
             var userProfileService = CreateUserProfileService();
-            
-            if (!userProfileService.CreateUser(model))
+
+            try
             {
-                return InternalServerError();
+                if (!userProfileService.CreateUser(model))
+                {
+                    return InternalServerError();
+                }
+                return Ok();
             }
-            return Ok();
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPut]
