@@ -24,7 +24,7 @@ namespace BookLover.WebAPI.Controllers
         public IHttpActionResult GetAllProfiles()
         {
             UserProfileService userProfileService = CreateUserProfileService();
-            List<UserProfileDisplay> userProfiles = userProfileService.GetAllUserProfiles();
+            List<UserProfileListItem> userProfiles = userProfileService.GetAllUserProfiles();
             return Ok(userProfiles);
         }
 

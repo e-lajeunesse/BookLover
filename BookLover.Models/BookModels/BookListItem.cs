@@ -15,11 +15,9 @@ namespace BookLover.Models.BookModels
         public string Description { get; set; }
         public double AverageRating { get; set; }
 
-
-        //Ben's changes
         public int AuthorId { get; set; }
         public AuthorDisplayItem Author { get; set; }
-        public List<BookReviewDisplayItem> BookReviews { get; set; }
+
         
     }
 }

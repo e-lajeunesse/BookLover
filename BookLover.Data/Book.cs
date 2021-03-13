@@ -45,6 +45,7 @@ namespace BookLover.Data
 
         public virtual List<BookReview> BookReviews { get; set; }
         public virtual List<Bookshelf> Bookshelves { get; set; } 
+        public virtual List<UserProfile> UsersWantingToRead { get; set; }
 
         [ForeignKey(nameof(Author))]
         public int AuthorId { get; set; }

@@ -50,7 +50,6 @@ namespace BookLover.Services
             return allBooks.Where(b => b.Genre.ToLower().Contains(genre.ToLower())
                 || genre.ToLower().Contains(b.Genre.ToLower())).
                 Select(b => CreateBookListItem(b)).ToList();
-
         }
 
         public List<BookListItem> SortBooksByRating()
@@ -125,12 +124,12 @@ namespace BookLover.Services
                 Genre = model.Genre,
                 Description = model.Description,
                 AverageRating = model.AverageRating,
-                BookReviews = model.BookReviews.Select(br => new BookReviewDisplayItem
+/*                BookReviews = model.BookReviews.Select(br => new BookReviewDisplayItem
                 {
                     ReviewId = br.ReviewId,
                     ReviewText = br.ReviewText,
                     BookRating = br.BookRating,
-                }).ToList(),
+                }).ToList(),*/
                 AuthorId = model.AuthorId,
                 Author = new AuthorDisplayItem
                 {

@@ -1,0 +1,88 @@
+namespace BookLover.Data.Migrations
+{
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<BookLover.Data.ApplicationDbContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
+
+        protected override void Seed(BookLover.Data.ApplicationDbContext context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
+            context.Authors.AddOrUpdate(a => a.AuthorId,
+                 new Author() { AuthorId = 1, FirstName = "Steven", LastName = "King", Description = "Horror writer" },
+                 new Author() { AuthorId = 2, FirstName = "George R.R.", LastName = "Martin", Description = "Fantasy writer" },
+                 new Author() { AuthorId = 3, FirstName = "John", LastName = "Grisham", Description = "Legal fiction writer" },
+                 new Author() { AuthorId = 4, FirstName = "Suzanne", LastName = "Collins", Description = "Young adult author" },
+                 new Author() { AuthorId = 5, FirstName = "Gillian", LastName = "Flynn", Description = "Thriller/Mystery writer" },
+                 new Author() { AuthorId = 6, FirstName = "Blake", LastName = "Crouch", Description = "Science fiction writer" },
+                 new Author() { AuthorId = 7, FirstName = "Catherine", LastName = "Webb", Description = "Science fiction writer" },
+                 new Author() { AuthorId = 8, FirstName = "Dan", LastName = "Brown", Description = "Fiction thriller/suspense writer" },
+                 new Author() { AuthorId = 9, FirstName = "Jon", LastName = "Krakauer", Description = "Non-fiction writer" },
+                 new Author() { AuthorId = 10, FirstName = "Dave", LastName = "Barry", Description = "Comic author and columnist" });
+
+            context.Books.AddOrUpdate(b => b.BookId,
+                new Book() { Title = "It", Genre = "Horror", AuthorId = 1, Description = "It is a 1986 horror novel by American author Stephen King. It was his 22nd book, and his 17th novel written under his own name. The story follows the experiences of seven children as they are terrorized by an evil entity that exploits the fears of its victims to disguise itself while hunting its prey." },
+                new Book() { Title = "The Shining", Genre = "Horror", AuthorId = 1, Description = "The Shining centers on the life of Jack Torrance, a struggling writer and recovering alcoholic who accepts a position as the off-season caretaker of the historic Overlook Hotel in the Colorado Rockies. " },
+
+                new Book()
+                {
+                    Title = "A Game of Thrones",
+                    Genre = "Fantasy",
+                    AuthorId = 2,
+                    Description = "A Game of Thrones is the first novel in A Song of Ice and Fire, " +
+                    "a series of fantasy novels by the American author George R. R. Martin. "
+                },
+                new Book() { Title = "A Storm of Swords", Genre = "Fantasy", AuthorId = 2, Description = "A Storm of Swords is the third of seven planned novels in A Song of Ice and Fire, a fantasy series by American author George R. R. Martin. It was first published on August 8, 2000, in the United Kingdom,[1] with a United States edition following in November 2000. Its publication was preceded by a novella called Path of the Dragon, which collects some of the Daenerys Targaryen chapters from the novel into a single book." },
+
+                new Book()
+                {
+                    Title = "The Firm",
+                    Genre = "Thriller",
+                    AuthorId = 3,
+                    Description = "The Firm is a 1991 legal thriller by American writer John Grisham. " +
+                    "It was his second book and the first which gained wide popularity; in 1993, after selling 1.5 million copies, it was made into a namesake" +
+                   " film starring Tom Cruise, Gene Hackman and Jeanne Tripplehorn."
+                },
+                new Book() { Title = "The Pelican Brief", Genre = "Thriller", AuthorId = 3, Description = "The Pelican Brief is a legal-suspense thriller by John Grisham, published in 1992 by Doubleday.[1] It is his third novel after A Time to Kill and The Firm. Two paperback editions were published, both by Dell Publishing in 1993. A namesake film adaptation was released in 1993 starring Julia Roberts and Denzel Washington." },
+
+
+                new Book() { Title = "The Hunger Games", Genre = "Young adult", AuthorId = 4, Description = "The Hunger Games is a 2008 dystopian novel by the American writer Suzanne Collins. It is written in the voice of 16-year-old Katniss Everdeen, who lives in the future, post-apocalyptic nation of Panem in North America." },
+                new Book() { Title = "Catching Fire", Genre = "Horror", AuthorId = 4, Description = "Catching Fire is a 2009 science fiction young adult novel by the American novelist Suzanne Collins, the second book in The Hunger Games series. As the sequel to the 2008 bestseller The Hunger Games, it continues the story of Katniss Everdeen and the post-apocalyptic nation of Panem." },
+
+                new Book() { Title = "Gone Girl", Genre = "Thriller", AuthorId = 5, Description = "Gone Girl is a 2012 thriller novel by American writer Gillian Flynn. It was published by Crown Publishing Group in June 2012. The novel became quite popular and soon made the New York Times Best Seller list. The sense of suspense in the novel comes from whether or not Nick Dunne is involved in the disappearance of his wife Amy." },
+                new Book() { Title = "Dark Places", Genre = "Mystery", AuthorId = 5, Description = "Dark Places is a mystery novel by Gillian Flynn published in 2009. The novel deals with class issues in rural America, intense poverty and the Satanic cult hysteria that swept the United States in the 1980s." },
+
+                new Book() { Title = "Pines", Genre = "Mystery", AuthorId = 6, Description = "The Wayward Pines Trilogy (2012–2014) is a mystery/thriller/science fiction novel series by American author Blake Crouch. It follows U.S. Secret Service agent Ethan Burke as he unravels the mystery surrounding his unanticipated arrival in the small town of Wayward Pines, Idaho, following a devastating car accident. " },
+                new Book() { Title = "Recurstion", Genre = "Science Fiction", AuthorId = 6, Description = "At once a relentless page-turner and an intricate science-fiction puzzlebox about time, identity, and memory, Recursion is a thriller as only Blake Crouch could imagine it—and his most ambitious, mind-boggling, irresistible work to date." },
+
+                new Book() { Title = "The First Fifteen Lives of Harry August", Genre = "Science Fiction", AuthorId = 7, Description = "Harry August is born in the women's washroom of Berwick-upon-Tweed station in 1919, leads an unremarkable life, and dies in hospital in Newcastle-upon-Tyne in 1989. He then finds himself born again back in 1919 in the same circumstances, gaining the knowledge of his earlier life at an early age. He learns he is an Ouroboran or Kalachakra and is destined to be reborn again and again." },
+
+                new Book() { Title = "Deception Point", Genre = "Thriller", AuthorId = 8, Description = "The novel follows White House intelligence analyst Rachel Sexton's involvement in corroborating NASA's discovery of a meteorite that supposedly contains proof of extraterrestrial life, resembling the ALH84001 case."},
+                new Book() { Title = "Digital Fortress", Genre = "Thriller", AuthorId = 8, Description = "The book explores the theme of government surveillance of electronically stored information on the private lives of citizens, and the possible civil liberties and ethical implications of using such technology."},
+
+                new Book() { Title = "Into The Wild", Genre = "Nonfiction", AuthorId = 9, Description = " It is an expansion of a 9,000-word article by Krakauer on Chris McCandless titled 'Death of an Innocent', which appeared in the January 1993 issue of Outside. The book was adapted to a film of the same name in 2007, directed by Sean Penn with Emile Hirsch starring as McCandless."},
+
+                new Book() { Title = "Money Secrets", Genre = "Comedy", AuthorId = 10, Description = "Did you ever wish that you really understood money? Well, Dave Barry wishes that he did, too. But that hasn’t stopped him from writing this book."},
+                new Book() { Title = "The Worst Class Trip Ever", Genre = "Comedy", AuthorId = 10, Description = "In this hilarious novel, written in the voice of eighth-grader Wyatt Palmer, Dave Barry takes us on a class trip to Washington, DC."}
+                );
+        }
+    }
+}

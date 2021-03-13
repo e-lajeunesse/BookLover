@@ -23,6 +23,7 @@ namespace BookLover.Services
 
         public bool CreateBookReview(BookReviewCreate model)
         {
+            UserProfile profile = _context.UserProfiles.Single(p => p.OwnerId == _userId);
             BookReview bookReview = new BookReview()
             {
                 OwnerId = _userId,
@@ -30,7 +31,8 @@ namespace BookLover.Services
                 BookRating = model.BookRating,
                 ReviewTitle = model.ReviewTitle,
                 BookId = model.BookId,
-                CreatedReview = DateTimeOffset.Now
+                CreatedReview = DateTimeOffset.Now,
+                UserProfileId = profile.UserProfileId
             };
 
             _context.BookReviews.Add(bookReview);

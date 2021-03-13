@@ -113,12 +113,12 @@ namespace BookLover.Services
                             Title = b.Title,
                             Genre = b.Genre,
                             Description = b.Description,
-                            BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+/*                            BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
                             {
                                 ReviewId = br.ReviewId,
                                 ReviewText = br.ReviewText,
                                 BookRating = br.BookRating,
-                            }).ToList(),
+                            }).ToList(),*/
                         }).ToList(),
                     };
 
@@ -146,12 +146,12 @@ namespace BookLover.Services
                             Title = b.Title,
                             Genre = b.Genre,
                             Description = b.Description,
-                            BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+/*                            BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
                             {
                                 ReviewId = br.ReviewId,
                                 ReviewText = br.ReviewText,
                                 BookRating = br.BookRating,
-                            }).ToList(),
+                            }).ToList(),*/
                         }).ToList(),
                     };               
             }
@@ -172,12 +172,12 @@ namespace BookLover.Services
                     Title = b.Title,
                     Genre = b.Genre,
                     Description = b.Description,
-                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+/*                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
                     {
                         ReviewId = br.ReviewId,
                         ReviewText = br.ReviewText,
                         BookRating = br.BookRating,
-                    }).ToList(),
+                    }).ToList(),*/
                 }).ToList(),
             }).ToList();
 
