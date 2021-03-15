@@ -13,9 +13,7 @@ namespace BookLover.Services
 {
     public class GoogleBooksAPIService
     {
-        private HttpClient _client;        
-        //private string ApiKey = "AIzaSyDbZkOtajo-Njs2gP1QXylKb6Px6sCi8ec";
-
+        private HttpClient _client;      
         public GoogleBooksAPIService()
         {
             _client = new HttpClient();
