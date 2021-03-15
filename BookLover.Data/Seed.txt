@@ -1,7 +1,7 @@
 ﻿After enabling migrations copy and paste the below code into Configuration.cs to seed the Author and Book tables.
            
            context.Authors.AddOrUpdate(a => a.AuthorId,
-                new Author() { AuthorId = 1, FirstName = "Steven", LastName = "King", Description = "Horror writer" },
+                new Author() { AuthorId = 1, FirstName = "Stephen", LastName = "King", Description = "Horror writer" },
                 new Author() { AuthorId = 2, FirstName = "George R.R.", LastName = "Martin", Description = "Fantasy writer" },
                 new Author() { AuthorId = 3,  FirstName = "John", LastName = "Grisham", Description = "Legal fiction writer" },
                 new Author() { AuthorId = 4,  FirstName = "Suzanne", LastName = "Collins", Description = "Young adult author" },
@@ -41,8 +41,8 @@
                 newBook() {Title="Deception Point", Genre = "Thriller", AuthorId = 8, Descripton = "The novel follows White House intelligence analyst Rachel Sexton's involvement in corroborating NASA's discovery of a meteorite that supposedly contains proof of extraterrestrial life, resembling the ALH84001 case."},
                 newBook() {Title="Digital Fortress", Genre = "Thriller", AuthorId = 8, Description = "The book explores the theme of government surveillance of electronically stored information on the private lives of citizens, and the possible civil liberties and ethical implications of using such technology."},
 
-                newBook() {Title="Into The Wild", Genre = "Nonfiction", AuthorId = 9, Description = " It is an expansion of a 9,000-word article by Krakauer on Chris McCandless titled "Death of an Innocent", which appeared in the January 1993 issue of Outside. The book was adapted to a film of the same name in 2007, directed by Sean Penn with Emile Hirsch starring as McCandless."},
+                newBook() {Title="Into The Wild", Genre = "Nonfiction", AuthorId = 9, Description = " It is an expansion of a 9,000-word article by Krakauer on Chris McCandless titled 'Death of an Innocent', which appeared in the January 1993 issue of Outside. The book was adapted to a film of the same name in 2007, directed by Sean Penn with Emile Hirsch starring as McCandless."},
 
-                newBook() {Title="Money Secrets", Genre = "Comedy", AuthorId = 10, Description = "Did you ever wish that you really understood money? Well, Dave Barry wishes that he did, too. But that hasn’t stopped him from writing this book."},
-                newBook() {Title="The Worst Class Trip Ever", Genre = "Comedy", AuthorId = 10, Description = "In this hilarious novel, written in the voice of eighth-grader Wyatt Palmer, Dave Barry takes us on a class trip to Washington, DC."}
+                new Book() {Title="Money Secrets", Genre = "Comedy", AuthorId = 10, Description = "Did you ever wish that you really understood money? Well, Dave Barry wishes that he did, too. But that hasn’t stopped him from writing this book."},
+                new Book() {Title="The Worst Class Trip Ever", Genre = "Comedy", AuthorId = 10, Description = "In this hilarious novel, written in the voice of eighth-grader Wyatt Palmer, Dave Barry takes us on a class trip to Washington, DC."}
                 );

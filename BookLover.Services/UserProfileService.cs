@@ -1,4 +1,5 @@
 ﻿using BookLover.Data;
+using BookLover.Models.BookReviewModels;
 using BookLover.Models.BookshelfModels;
 using BookLover.Models.UserProfileModels;
 using System;
@@ -23,10 +24,17 @@ namespace BookLover.Services
         {
             List<Book> allBooks = _context.Books.ToList();
 
+            //Throw exception if DB already contains a profile for this userId
+            if (_context.UserProfiles.Select(p => p.OwnerId).Contains(_userId))
+            {
+                throw new Exception("A profile for this user already exists.");
+            }
+
             UserProfile userProfile = new UserProfile()
             {
                 OwnerId = _userId,
                 UserName = model.UserName,
+                BookIds = model.BookIds,
                 BooksToRead = allBooks.Where(b => model.BookIds.Contains(b.BookId)).ToList()
             };
 
@@ -47,10 +55,11 @@ namespace BookLover.Services
             return userProfileListItem;
         }*/
 
-        public List<UserProfileDisplay> GetAllUserProfiles()
+        public List<UserProfileListItem> GetAllUserProfiles()
         {
-            List<UserProfileDisplay> allprofiles = _context.UserProfiles.
-                Select(upd => new UserProfileDisplay
+
+            List<UserProfileListItem> allprofiles = _context.UserProfiles.
+                Select(upd => new UserProfileListItem
                 {
                     UserProfileId = upd.UserProfileId,
                     UserName = upd.UserName,
@@ -59,6 +68,7 @@ namespace BookLover.Services
                         BookId = btr.BookId,
                         Title = btr.Title,
                     }).ToList(),
+
                     Bookshelves = upd.Bookshelves.Select(bs => new BookshelfDisplay
                     {
                         BookshelfId = bs.BookshelfId,
@@ -68,6 +78,15 @@ namespace BookLover.Services
                             BookId = b.BookId,
                             Title = b.Title
                         }).ToList()
+                    }).ToList(),
+
+                    BookReviews = upd.BookReviews.Select(br => new UserProfileBookReviewDisplay
+                    {
+                        ReviewId = br.ReviewId,
+                        BookId = br.BookId,
+                        BookTitle = br.Book.Title,
+                        BookRating = br.BookRating,
+                        ReviewText = br.ReviewText
                     }).ToList()
                 }).ToList();
 
@@ -77,14 +96,34 @@ namespace BookLover.Services
         public UserProfileDisplay GetUserById(int id)
         {
             UserProfile profileToGet = _context.UserProfiles.Single(u => u.UserProfileId == id);
-            UserProfileDisplay profileDisplay = new UserProfileDisplay
+            UserProfileDisplay profileDisplay = new UserProfileDisplay() 
             {
                 UserProfileId = profileToGet.UserProfileId,
                 UserName = profileToGet.UserName,
                 BooksToRead = profileToGet.BooksToRead.Select(b => new BookToReadDisplay
                 {
                     BookId = b.BookId,
-                    Title = b.Title,
+                    Title = b.Title
+                }).ToList(),
+
+                Bookshelves = profileToGet.Bookshelves.Select(bs => new BookshelfDisplay
+                {
+                    BookshelfId = bs.BookshelfId,
+                    Title = bs.Title,
+                    Books = bs.Books.Select(b => new BookshelfBookDisplay
+                    {
+                        BookId = b.BookId,
+                        Title = b.Title
+                    }).ToList()
+                }).ToList(),
+
+                BookReviews = profileToGet.BookReviews.Select(br => new UserProfileBookReviewDisplay
+                {
+                    ReviewId = br.ReviewId,
+                    BookId = br.BookId,
+                    BookTitle = br.Book.Title,
+                    BookRating = br.BookRating,
+                    ReviewText = br.ReviewText
                 }).ToList()
             };
 

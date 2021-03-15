@@ -1,4 +1,5 @@
 ﻿using BookLover.Data;
+using BookLover.Models.BookshelfModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,9 +13,12 @@ namespace BookLover.Models.UserProfileModels
     {
         public int UserProfileId { get; set; }
         public string UserName { get; set; }
-        public List<Book> BooksToRead { get; set; }
-        [Display(Name="UserCreated")]
-        public DateTimeOffset CreatedUser { get; set; }
+        public List<BookToReadDisplay> BooksToRead { get; set; }
+        
+        public List<BookshelfDisplay> Bookshelves { get; set; }
+
+        public List<UserProfileBookReviewDisplay> BookReviews { get; set; }
+        
 
        
     }
