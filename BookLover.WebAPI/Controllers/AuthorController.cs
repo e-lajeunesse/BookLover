@@ -98,5 +98,32 @@ namespace BookLover.WebAPI.Controllers
             return Ok(author);
         }
 
+        [System.Web.Http.Route("api/AuthorsByLastName")]
+        [HttpGet]
+        public IHttpActionResult SortAuthorsByLastName()
+        {
+            AuthorServices service = CreateAuthorService();
+            List<AuthorListItems> authors = service.SortAuthorsByLastName();
+            return Ok(authors);
+        }
+
+        [HttpGet]
+        [System.Web.Http.Route("api/AuthorsByFirstName")]
+        public IHttpActionResult SortAuthorsByFirstName()
+        {
+            AuthorServices service = CreateAuthorService();
+            List<AuthorListItems> authors = service.SortAuthorsByFirstName();
+            return Ok(authors);
+        }
+
+        [HttpGet]
+        [System.Web.Http.Route("api/AuthorsByRating")]
+        public IHttpActionResult SortAuthorsByRating()
+        {
+            AuthorServices service = CreateAuthorService();
+            List<AuthorListItems> authors = service.SortAuthorsByRating();
+            return Ok(authors);
+        }
+
     }
 }

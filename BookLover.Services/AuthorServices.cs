@@ -172,7 +172,7 @@ namespace BookLover.Services
                     Title = b.Title,
                     Genre = b.Genre,
                     Description = b.Description,
-/*                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+                   /* BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
                     {
                         ReviewId = br.ReviewId,
                         ReviewText = br.ReviewText,
@@ -184,9 +184,49 @@ namespace BookLover.Services
             return authorListItems;
         }
 
- 
+        public List<AuthorListItems> SortAuthorsByLastName()
+        {
+            List<Author> allAuthors = _context.Authors.ToList();
+            List<Author> sortedAuthors = allAuthors.OrderBy(a => a.LastName).ToList();
+            return sortedAuthors.Select(a => CreateAuthorListItems(a)).ToList();
+        }
 
+        public List<AuthorListItems> SortAuthorsByFirstName()
+        {
+            List<Author> allAuthors = _context.Authors.ToList();
+            List<Author> sortedAuthors = allAuthors.OrderBy(a => a.FirstName).ToList();
+            return sortedAuthors.Select(a => CreateAuthorListItems(a)).ToList();
+        }
 
+        public List<AuthorListItems> SortAuthorsByRating()
+        {
+            List<Author> allAuthors = _context.Authors.ToList();
+            List<Author> sortedAuthors = allAuthors.OrderByDescending(b => b.AverageRating).ToList();
+            return sortedAuthors.Select(b => CreateAuthorListItems(b)).ToList();
+        }
+
+        //Helper Method
+        public AuthorListItems CreateAuthorListItems(Author model)
+        {
+            return new AuthorListItems()
+            {
+
+                AuthorId = model.AuthorId,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Description = model.Description,
+                Books = model.BookList.Select(b => new BookListItem
+                {
+                    BookId = b.BookId,
+                    Title = b.Title,
+                    Genre = b.Genre,
+                    Description = b.Description,
+
+                }).ToList(),
+
+            };
+
+        }
     }
 }
                 
