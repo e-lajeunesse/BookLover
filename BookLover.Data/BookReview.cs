@@ -28,5 +28,6 @@ namespace BookLover.Data
         [ForeignKey(nameof(UserProfile))]
         public int UserProfileId { get; set; }
         public virtual UserProfile UserProfile { get; set; }
+
     }
 }

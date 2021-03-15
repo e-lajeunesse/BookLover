@@ -9,10 +9,10 @@ namespace BookLover.Data
 {
     public class Author
     {
-       
+
         [Key]
         public int AuthorId { get; set; }
-        
+
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -20,6 +20,19 @@ namespace BookLover.Data
         public string Description { get; set; }
 
         public virtual List<Book> BookList { get; set; }
+        public virtual List<BookReview> BookReviews { get; set; }
+
+        public double AverageRating
+        {
+            get
+            {
+                if (BookReviews.Count > 0)
+                {
+                    return BookReviews.Select(r => r.BookRating).Sum() / BookReviews.Count;
+                }
+                return 0;
+            }
+        }
     }
 }
 
