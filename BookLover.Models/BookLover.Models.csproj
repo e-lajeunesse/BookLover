@@ -54,17 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthorDisplayItem.cs" />
+    <Compile Include="AuthorModels\AuthorDisplayItem.cs" />
     <Compile Include="BookReviewModels\BookDisplayItem.cs" />
     <Compile Include="BookReviewModels\BookReviewCreate.cs" />
     <Compile Include="BookReviewModels\BookReviewDetail.cs" />
     <Compile Include="BookReviewModels\BookReviewDisplayItem.cs" />
     <Compile Include="BookReviewModels\BookReviewEdit.cs" />
     <Compile Include="BookReviewModels\BookReviewListItem.cs" />
-    <Compile Include="AuthorCreate.cs" />
-    <Compile Include="AuthorDetail.cs" />
-    <Compile Include="AuthorEdit.cs" />
-    <Compile Include="AuthorListItems.cs" />
+    <Compile Include="AuthorModels\AuthorCreate.cs" />
+    <Compile Include="AuthorModels\AuthorDetail.cs" />
+    <Compile Include="AuthorModels\AuthorEdit.cs" />
+    <Compile Include="AuthorModels\AuthorListItems.cs" />
     <Compile Include="BookModels\BookCreate.cs" />
     <Compile Include="BookModels\BookDetail.cs" />
     <Compile Include="BookModels\BookEdit.cs" />

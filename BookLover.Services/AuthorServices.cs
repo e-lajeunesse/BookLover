@@ -187,14 +187,14 @@ namespace BookLover.Services
         public List<AuthorListItems> SortAuthorsByLastName()
         {
             List<Author> allAuthors = _context.Authors.ToList();
-            List<Author> sortedAuthors = allAuthors.OrderByDescending(a => a.LastName).ToList();
+            List<Author> sortedAuthors = allAuthors.OrderBy(a => a.LastName).ToList();
             return sortedAuthors.Select(a => CreateAuthorListItems(a)).ToList();
         }
 
         public List<AuthorListItems> SortAuthorsByFirstName()
         {
             List<Author> allAuthors = _context.Authors.ToList();
-            List<Author> sortedAuthors = allAuthors.OrderByDescending(a => a.FirstName).ToList();
+            List<Author> sortedAuthors = allAuthors.OrderBy(a => a.FirstName).ToList();
             return sortedAuthors.Select(a => CreateAuthorListItems(a)).ToList();
         }
 
@@ -214,12 +214,6 @@ namespace BookLover.Services
                     Title = b.Title,
                     Genre = b.Genre,
                     Description = b.Description,
-                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
-                    {
-                        ReviewId = br.ReviewId,
-                        ReviewText = br.ReviewText,
-                        BookRating = br.BookRating,
-                    }).ToList(),
                 }).ToList(),
 
             };
