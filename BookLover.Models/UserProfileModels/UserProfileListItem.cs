@@ -18,8 +18,5 @@ namespace BookLover.Models.UserProfileModels
         public List<BookshelfDisplay> Bookshelves { get; set; }
 
         public List<UserProfileBookReviewDisplay> BookReviews { get; set; }
-        
-
-       
     }
 }
