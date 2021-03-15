@@ -33,8 +33,6 @@ namespace BookLover.Data
                 return 0;
             }
         }
-
-
     }
 }
 
