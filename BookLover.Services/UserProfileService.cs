@@ -153,5 +153,23 @@ namespace BookLover.Services
             _context.UserProfiles.Remove(profileToDelete);
             return _context.SaveChanges() == 1;
         }
+
+        public bool AddBookToReadList(int bookId)
+        {
+            Book bookToAdd = _context.Books.Single(b => b.BookId == bookId);
+            UserProfile profileToEdit = _context.UserProfiles.Single(p => p.OwnerId == _userId);
+
+            profileToEdit.BooksToRead.Add(bookToAdd);
+            return _context.SaveChanges() == 1;
+        }
+
+        public bool RemoveBookFromReadList(int bookId)
+        {
+            Book bookToRemove = _context.Books.Single(b => b.BookId == bookId);
+            UserProfile profileToEdit = _context.UserProfiles.Single(p => p.OwnerId == _userId);
+
+            profileToEdit.BooksToRead.Remove(bookToRemove);
+            return _context.SaveChanges() == 1;
+        }
     }
 }

@@ -78,11 +78,34 @@ namespace BookLover.WebAPI.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public IHttpActionResult AddBookToReadList(int bookId)
+        {
+            UserProfileService service = CreateUserProfileService();
+            if (!service.AddBookToReadList(bookId))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+
+        }
+
         [HttpDelete]
         public IHttpActionResult DeleteProfileById(int id)
         {
             UserProfileService service = CreateUserProfileService();
-            if (service.DeleteUserProfile(id))
+            if (!service.DeleteUserProfile(id))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IHttpActionResult RemoveBookFromReadList(int bookId)
+        {
+            UserProfileService service = CreateUserProfileService();
+            if (!service.RemoveBookFromReadList(bookId))
             {
                 return InternalServerError();
             }
