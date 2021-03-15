@@ -98,8 +98,8 @@ namespace BookLover.WebAPI.Controllers
             return Ok(author);
         }
 
-        [HttpGet]
         [System.Web.Http.Route("api/AuthorsByLastName")]
+        [HttpGet]
         public IHttpActionResult SortAuthorsByLastName()
         {
             AuthorServices service = CreateAuthorService();
@@ -107,12 +107,21 @@ namespace BookLover.WebAPI.Controllers
             return Ok(authors);
         }
 
-        [System.Web.Http.Route("api/AuthorsByFirstName")]
         [HttpGet]
+        [System.Web.Http.Route("api/AuthorsByFirstName")]
         public IHttpActionResult SortAuthorsByFirstName()
         {
             AuthorServices service = CreateAuthorService();
             List<AuthorListItems> authors = service.SortAuthorsByFirstName();
+            return Ok(authors);
+        }
+
+        [HttpGet]
+        [System.Web.Http.Route("api/AuthorsByRating")]
+        public IHttpActionResult SortAuthorsByRating()
+        {
+            AuthorServices service = CreateAuthorService();
+            List<AuthorListItems> authors = service.SortAuthorsByRating();
             return Ok(authors);
         }
 
