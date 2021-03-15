@@ -1,4 +1,5 @@
-﻿using BookLover.Models.BookModels;
+﻿using BookLover.Data;
+using BookLover.Models.BookModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,7 @@ namespace BookLover.Models
         [Required]
         public string LastName { get; set; }
         public string Description { get; set; }
-
+       
         public List<BookListItem> Books { get; set; }
         public List<BookReviewCreate> BookReviews { get; set; }
     }

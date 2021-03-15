@@ -18,7 +18,7 @@ namespace BookLover.Data
         [Required]
         public string LastName { get; set; }
         public string Description { get; set; }
-
+        
         public virtual List<Book> BookList { get; set; }
         
 
