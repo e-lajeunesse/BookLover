@@ -19,6 +19,6 @@ namespace BookLover.Models
         public string Description { get; set; }
        
         public List<BookListItem> Books { get; set; }
-        public List<BookReviewCreate> BookReviews { get; set; }
+        //public List<BookReview> BookReviews { get; set; }
     }
 }

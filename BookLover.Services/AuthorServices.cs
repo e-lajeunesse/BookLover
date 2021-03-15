@@ -172,7 +172,7 @@ namespace BookLover.Services
                     Title = b.Title,
                     Genre = b.Genre,
                     Description = b.Description,
-/*                    BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
+                   /* BookReviews = b.BookReviews.Select(br => new BookReviewDisplayItem
                     {
                         ReviewId = br.ReviewId,
                         ReviewText = br.ReviewText,
@@ -198,6 +198,13 @@ namespace BookLover.Services
             return sortedAuthors.Select(a => CreateAuthorListItems(a)).ToList();
         }
 
+        public List<AuthorListItems> SortAuthorsByRating()
+        {
+            List<Author> allAuthors = _context.Authors.ToList();
+            List<Author> sortedAuthors = allAuthors.OrderByDescending(b => b.AverageRating).ToList();
+            return sortedAuthors.Select(b => CreateAuthorListItems(b)).ToList();
+        }
+
         //Helper Method
         public AuthorListItems CreateAuthorListItems(Author model)
         {
@@ -214,12 +221,12 @@ namespace BookLover.Services
                     Title = b.Title,
                     Genre = b.Genre,
                     Description = b.Description,
+
                 }).ToList(),
 
             };
 
         }
-
     }
 }
                 
