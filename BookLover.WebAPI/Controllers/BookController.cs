@@ -1,5 +1,6 @@
 ﻿using BookLover.Data;
 using BookLover.Models.BookModels;
+using BookLover.Models.GoogleBooksModels;
 using BookLover.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -21,6 +22,7 @@ namespace BookLover.WebAPI.Controllers
             BookService service = new BookService(userId);
             return service;
         }
+
 
         [HttpPost]
         public IHttpActionResult PostBook(BookCreate model)
@@ -46,6 +48,18 @@ namespace BookLover.WebAPI.Controllers
             }
             return Ok();
         }
+
+        [HttpPost]        
+        public IHttpActionResult PostBookByGoogleId(string id)
+        {
+            BookService service = CreateBookService();
+            if (!service.AddBookByGoogleId(id))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+
 
         //Ben's changes
         [HttpGet]

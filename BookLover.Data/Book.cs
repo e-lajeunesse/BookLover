@@ -24,36 +24,19 @@ namespace BookLover.Data
             get
             {
                 return new List<string> { "Horror","Fantasy","Romance","Science Fiction","Thriller","Mystery",
-                    "Young Adult","Historical Fiction","Nonfiction", "Comedy"};
+                    "Young Adult","Historical Fiction","Nonfiction", "Comedy", "Unavailable"};
             }
         }
 
-        [MaxLength(500)]
+        //[MaxLength(500)]
         public string Description { get; set; }
 
-        public int ReviewCount 
-        { 
-            get
-            {
-                return BookReviews.Count;
-            }
-        }
-        public double AverageRating
-        {
-            get
-            {
-                if (BookReviews.Count > 0)
-                {
-                    return BookReviews.Select(r => r.BookRating).Sum() / BookReviews.Count;
-                }
-                return 0;
-            }
-        }
-                       
 
-        public virtual List<BookReview> BookReviews { get; set; }
+
+
+        public virtual List<BookReview> BookReviews { get; set; } 
         public virtual List<Bookshelf> Bookshelves { get; set; } 
-        public virtual List<UserProfile> UsersWantingToRead { get; set; }
+        public virtual List<UserProfile> UsersWantingToRead { get; set; } 
 
         [ForeignKey(nameof(Author))]
         public int AuthorId { get; set; }

@@ -3,6 +3,7 @@ using BookLover.Models;
 using BookLover.Models.BookModels;
 using BookLover.Models.BookReviewModels;
 using BookLover.Models.BookshelfModels;
+using BookLover.Models.GoogleBooksModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace BookLover.Services
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
         private readonly Guid _userId;
         private Random rand = new Random();
+        private GoogleBooksAPIService service = new GoogleBooksAPIService();
 
         public BookService(Guid userId)
         {
@@ -29,13 +31,29 @@ namespace BookLover.Services
                 Title = model.Title,
                 Genre = model.Genre,
                 Description = model.Description,
-                AuthorId = model.AuthorId
+                AuthorId = model.AuthorId,
             };
 
             _context.Books.Add(book);
             return _context.SaveChanges() == 1;
         }
 
+        public bool AddBookByGoogleId(string id)
+        {
+            GoogleBook googleBook = service.GetBookByGoogleId(id).Result;
+            Author author = _context.Authors.FirstOrDefault(a => a.FirstName == googleBook.AuthorFirstName 
+                && a.LastName == googleBook.AuthorLastName);
+            Book bookToAdd = new Book
+            {
+                Title = googleBook.VolumeInfo.Title,
+                Genre = googleBook.Genre,
+                Description = googleBook.VolumeInfo.Description,
+                AuthorId = author.AuthorId
+            };
+            _context.Books.Add(bookToAdd);
+            return _context.SaveChanges() == 1;
+            //return CreateBook(bookToAdd);
+        }
         
         public List<BookListItem> GetAllBooks()
         {
@@ -54,17 +72,17 @@ namespace BookLover.Services
 
         public List<BookListItem> SortBooksByRating()
         {
-            List<Book> allBooks = _context.Books.ToList();
-            List<Book> sortedBooks = allBooks.OrderByDescending(b => b.AverageRating).ToList();
-            return sortedBooks.Select(b => CreateBookListItem(b)).ToList();
+            List<BookListItem> allBooks = _context.Books.Select(b => CreateBookListItem(b)).ToList();
+            List<BookListItem> sortedBooks = allBooks.OrderByDescending(b => b.AverageRating).ToList();
+            return sortedBooks;
         }
 
         public List<BookListItem> SortByGenreAndRating()
         {
-            List<Book> allBooks = _context.Books.ToList();
-            List<Book> sortedBooks = allBooks.OrderBy(b => b.Genre.ToLower())
+            List<BookListItem> allBooks = _context.Books.Select(b => CreateBookListItem(b)).ToList();
+            List<BookListItem> sortedBooks = allBooks.OrderBy(b => b.Genre.ToLower())
                 .ThenByDescending(b => b.AverageRating).ToList();
-            return sortedBooks.Select(b => CreateBookListItem(b)).ToList();
+            return sortedBooks;
         }
 
         public List<BookListItem> GetBooksByAuthorId(int id)
@@ -95,7 +113,7 @@ namespace BookLover.Services
                 return default;
             }
             return CreateBookDetail(bookToGet);
-        }        
+        }
 
         public bool UpdateBook(BookEdit model)
         {
@@ -123,8 +141,9 @@ namespace BookLover.Services
                 Title = model.Title,
                 Genre = model.Genre,
                 Description = model.Description,
-                AverageRating = model.AverageRating,
-                ReviewCount = model.ReviewCount,
+                AverageRating = model.BookReviews.Count > 0 ?
+                    model.BookReviews.Select(r => r.BookRating).Sum() / model.BookReviews.Count : 0,                     
+                ReviewCount = model.BookReviews.Count,
                 AuthorId = model.AuthorId,
                 Author = new AuthorDisplayItem
                 {
@@ -141,8 +160,9 @@ namespace BookLover.Services
                 Title = model.Title,
                 Genre = model.Genre,
                 Description = model.Description,
-                AverageRating = model.AverageRating,
-                ReviewCount = model.ReviewCount,
+                AverageRating = model.BookReviews.Count > 0 ?
+                    model.BookReviews.Select(r => r.BookRating).Sum() / model.BookReviews.Count : 0,
+                ReviewCount = model.BookReviews.Count,
                 RecommendedBooks = GetRecommendedBooks(model),
                 BookReviews = model.BookReviews.Select(br => new BookReviewDisplayItem
                 {
@@ -152,7 +172,7 @@ namespace BookLover.Services
                 }).ToList(),
                 AuthorId = model.AuthorId,
                 Author = new AuthorDisplayItem
-                {                    
+                {
                     FullName = model.Author.FirstName + " " + model.Author.LastName
                 }
             };
