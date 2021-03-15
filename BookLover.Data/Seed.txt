@@ -1,7 +1,7 @@
 ﻿After enabling migrations copy and paste the below code into Configuration.cs to seed the Author and Book tables.
            
            context.Authors.AddOrUpdate(a => a.AuthorId,
-                new Author() { AuthorId = 1, FirstName = "Steven", LastName = "King", Description = "Horror writer" },
+                new Author() { AuthorId = 1, FirstName = "Stephen", LastName = "King", Description = "Horror writer" },
                 new Author() { AuthorId = 2, FirstName = "George R.R.", LastName = "Martin", Description = "Fantasy writer" },
                 new Author() { AuthorId = 3,  FirstName = "John", LastName = "Grisham", Description = "Legal fiction writer" },
                 new Author() { AuthorId = 4,  FirstName = "Suzanne", LastName = "Collins", Description = "Young adult author" },
