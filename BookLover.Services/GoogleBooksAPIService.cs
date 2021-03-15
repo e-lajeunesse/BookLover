@@ -13,7 +13,9 @@ namespace BookLover.Services
 {
     public class GoogleBooksAPIService
     {
+
         private HttpClient _client;      
+
         public GoogleBooksAPIService()
         {
             _client = new HttpClient();
