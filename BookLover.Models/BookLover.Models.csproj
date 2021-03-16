@@ -78,6 +78,8 @@
     <Compile Include="CommentModels\CommentEdit.cs" />
     <Compile Include="CommentModels\CommentListItem.cs" />
     <Compile Include="GoogleBooksModels\GoogleBook.cs" />
+    <Compile Include="GoogleBooksModels\searchItem.cs" />
+    <Compile Include="GoogleBooksModels\SearchResult.cs" />
     <Compile Include="GoogleBooksModels\VolumeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserProfileModels\BookToReadDisplay.cs" />

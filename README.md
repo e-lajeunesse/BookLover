@@ -20,3 +20,5 @@ https://dbdiagram.io/d/604a9102fcdcb6230b23bf20
 
 https://sdjanuary2021.slack.com/files/U01JA8D9D7V/F01Q1FPRDRC/whiteboard_2_-01.png
 [Slack](https://slack.com)
+
+![](img/2021-03-15 (2).png)
