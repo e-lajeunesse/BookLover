@@ -43,18 +43,86 @@ namespace BookLover.Services
             GoogleBook googleBook = service.GetBookByGoogleId(id).Result;
             Author author = _context.Authors.FirstOrDefault(a => a.FirstName == googleBook.AuthorFirstName 
                 && a.LastName == googleBook.AuthorLastName);
+
+            if (author == default)
+            {
+                throw new Exception($"Author with First name: {googleBook.AuthorFirstName}," +
+                    $"and Last Name: {googleBook.AuthorLastName} not found," +
+                    $" you must add author before book adding book."); 
+            }
+
             Book bookToAdd = new Book
             {
                 Title = googleBook.VolumeInfo.Title,
                 Genre = googleBook.Genre,
-                Description = googleBook.VolumeInfo.Description,
+                Description = googleBook.Description,
+                AuthorId = author.AuthorId
+            };
+            _context.Books.Add(bookToAdd);
+            return _context.SaveChanges() == 1;            
+        }
+
+        public bool AddBookByTitleAndAuthor(string title, string authorName)
+        {
+            GoogleBook googleBook = service.GetBookByTitleAndAuthor(title, authorName);
+            Author author = _context.Authors.FirstOrDefault(a => a.FirstName == googleBook.AuthorFirstName
+                && a.LastName == googleBook.AuthorLastName);
+
+            if (author == default)
+            {
+                throw new Exception($"Author with First name: {googleBook.AuthorFirstName}," +
+                    $"and Last Name: {googleBook.AuthorLastName} not found," +
+                    $" you must add author before book adding book.");
+            }
+
+            Book bookToAdd = new Book
+            {
+                Title = googleBook.VolumeInfo.Title,
+                Genre = googleBook.Genre,
+                Description = googleBook.Description,
                 AuthorId = author.AuthorId
             };
             _context.Books.Add(bookToAdd);
             return _context.SaveChanges() == 1;
-            //return CreateBook(bookToAdd);
+        }
+
+        public bool AddBooksByAuthor(string authorFirstName,string authorLastName)
+        {
+            Author author = AuthorIsAdded(authorFirstName, authorLastName);
+            string authorFullName = authorFirstName + " " + authorLastName;
+            List<GoogleBook> googleBooks = service.GetBooksByAuthor(authorFullName);
+
+            foreach(GoogleBook book in googleBooks)
+            {
+                if (_context.Books.FirstOrDefault(b => b.Title == book.VolumeInfo.Title 
+                    && b.AuthorId == author.AuthorId) != default)
+                {
+                    continue;
+                }
+                Book bookToAdd = new Book
+                {
+                    Title = book.VolumeInfo.Title,
+                    Genre = book.Genre,
+                    Description = book.Description,
+                    AuthorId = author.AuthorId
+                };
+                _context.Books.Add(bookToAdd);
+            }
+            return _context.SaveChanges() > 0;
         }
         
+        public Author AuthorIsAdded(string firstName, string lastName)
+        {
+            Author author = _context.Authors.FirstOrDefault(a => a.FirstName == firstName
+                && a.LastName == lastName);
+            if (author == default)
+            {
+                throw new Exception($"Author with First name: {firstName}," +
+                    $"and Last Name: {lastName} not found," +
+                    $" you must add author before book adding book.");
+            }
+            return author;
+        }
         public List<BookListItem> GetAllBooks()
         {
             List<Book> books = _context.Books.ToList();

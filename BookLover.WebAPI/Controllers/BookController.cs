@@ -52,13 +52,58 @@ namespace BookLover.WebAPI.Controllers
         [HttpPost]        
         public IHttpActionResult PostBookByGoogleId(string id)
         {
-            BookService service = CreateBookService();
-            if (!service.AddBookByGoogleId(id))
+            try
             {
-                return InternalServerError();
+                BookService service = CreateBookService();
+                if (!service.AddBookByGoogleId(id))
+                {
+                    return InternalServerError();
+                }
+                return Ok();
             }
-            return Ok();
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
+
+        [HttpPost]
+        public IHttpActionResult PostBookByTitleAndAuthor(string title,string authorName)
+        {
+            try
+            {
+                BookService service = CreateBookService();
+                if (!service.AddBookByTitleAndAuthor(title,authorName))
+                {
+                    return InternalServerError();
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPost]
+        public IHttpActionResult PostBooksByAuthor(string authorFirstName,string authorLastName)
+        {
+            try
+            {
+                BookService service = CreateBookService();
+                if (!service.AddBooksByAuthor(authorFirstName,authorLastName))
+                {
+                    return InternalServerError();
+                }
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
 
 
         //Ben's changes
