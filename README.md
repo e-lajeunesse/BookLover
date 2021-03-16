@@ -16,6 +16,7 @@ https://trello.com/b/2bpq8lS2/books-by-the-dozen
 [Trello](https://trello.com)
 
 https://dbdiagram.io/d/604a9102fcdcb6230b23bf20
+![](images/2021-03-15 (2).png)
 [Data Base Diagram](https://dbdiagram.com)
 
 https://sdjanuary2021.slack.com/files/U01JA8D9D7V/F01Q1FPRDRC/whiteboard_2_-01.png
