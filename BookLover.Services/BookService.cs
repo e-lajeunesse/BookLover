@@ -24,6 +24,7 @@ namespace BookLover.Services
             _userId = userId;
         }
 
+
         public bool CreateBook(BookCreate model)
         {
             Book book = new Book()
