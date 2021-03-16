@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookLover.Models", "BookLov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookLover.Services", "BookLover.Services\BookLover.Services.csproj", "{64A5727D-3AD9-4A8F-8FDE-2E566D421298}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookLoverTests", "BookLoverTests\BookLoverTests.csproj", "{637D38AE-4F45-4221-9051-4FF67E0767F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{64A5727D-3AD9-4A8F-8FDE-2E566D421298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64A5727D-3AD9-4A8F-8FDE-2E566D421298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64A5727D-3AD9-4A8F-8FDE-2E566D421298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{637D38AE-4F45-4221-9051-4FF67E0767F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{637D38AE-4F45-4221-9051-4FF67E0767F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{637D38AE-4F45-4221-9051-4FF67E0767F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{637D38AE-4F45-4221-9051-4FF67E0767F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
