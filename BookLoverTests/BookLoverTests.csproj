@@ -75,7 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="BookTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BookTests.cs" />
   </ItemGroup>
@@ -84,6 +84,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookLover.Data\BookLover.Data.csproj">
+      <Project>{507fbb87-3d5f-439b-bab5-7dc73074d6be}</Project>
+      <Name>BookLover.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookLover.Models\BookLover.Models.csproj">
       <Project>{db28080f-9e9d-4bc1-99ac-669ba9474612}</Project>
       <Name>BookLover.Models</Name>
@@ -91,10 +95,6 @@
     <ProjectReference Include="..\BookLover.Services\BookLover.Services.csproj">
       <Project>{64a5727d-3ad9-4a8f-8fde-2e566d421298}</Project>
       <Name>BookLover.Services</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BookLover.WebAPI\BookLover.WebAPI.csproj">
-      <Project>{0ed2041c-81db-4832-9eee-39884a59fc04}</Project>
-      <Name>BookLover.WebAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -19,6 +19,7 @@ namespace BookLover.Services
         private Random rand = new Random();
         private GoogleBooksAPIService service = new GoogleBooksAPIService();
 
+
         public BookService(Guid userId)
         {
             _userId = userId;
