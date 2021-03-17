@@ -34,8 +34,8 @@ namespace BookLover.Services
             {
                 OwnerId = _userId,
                 UserName = model.UserName,
-                BookIds = model.BookIds,
-                BooksToRead = allBooks.Where(b => model.BookIds.Contains(b.BookId)).ToList()
+                BookIds = (model.BookIds == null)? null : model.BookIds,
+                BooksToRead = (model.BookIds == null)?  null: allBooks.Where(b => model.BookIds.Contains(b.BookId)).ToList()
             };
 
             _context.UserProfiles.Add(userProfile);
@@ -127,6 +127,46 @@ namespace BookLover.Services
                 }).ToList()
             };
 
+            return profileDisplay;
+        }
+
+        public UserProfileDisplay GetUserByUserId()
+        {
+            UserProfile profileToGet = _context.UserProfiles.SingleOrDefault(u => u.OwnerId == _userId);
+            if (profileToGet == default)
+            {
+                return null;
+            }
+            UserProfileDisplay profileDisplay = new UserProfileDisplay()
+            {
+                UserProfileId = profileToGet.UserProfileId,
+                UserName = profileToGet.UserName,
+                BooksToRead = profileToGet.BooksToRead.Select(b => new BookToReadDisplay
+                {
+                    BookId = b.BookId,
+                    Title = b.Title
+                }).ToList(),
+
+                Bookshelves = profileToGet.Bookshelves.Select(bs => new BookshelfDisplay
+                {
+                    BookshelfId = bs.BookshelfId,
+                    Title = bs.Title,
+                    Books = bs.Books.Select(b => new BookshelfBookDisplay
+                    {
+                        BookId = b.BookId,
+                        Title = b.Title
+                    }).ToList()
+                }).ToList(),
+
+                BookReviews = profileToGet.BookReviews.Select(br => new UserProfileBookReviewDisplay
+                {
+                    ReviewId = br.ReviewId,
+                    BookId = br.BookId,
+                    BookTitle = br.Book.Title,
+                    BookRating = br.BookRating,
+                    ReviewText = br.ReviewText
+                }).ToList()
+            };
             return profileDisplay;
         }
 
