@@ -106,7 +106,7 @@ namespace BookLover.WebAPI.Controllers
 
 
 
-        //Ben's changes
+        
         [HttpGet]
         public IHttpActionResult GetBooks()
         {
@@ -124,7 +124,7 @@ namespace BookLover.WebAPI.Controllers
             {
                 return Ok(books);
             }
-            return Ok($"No books found for genre: {genre}");
+            return BadRequest($"No books found for genre: {genre}");
         }
 
         [HttpGet]

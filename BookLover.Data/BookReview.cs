@@ -17,6 +17,7 @@ namespace BookLover.Data
         [Required]
         public string ReviewText { get; set; }
         public DateTimeOffset CreatedReview { get; set; }
+        [Range(1,10)]
         public double BookRating { get; set; }
 
         public virtual List<Comment> Comments { get; set; }
