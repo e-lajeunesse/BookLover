@@ -36,6 +36,15 @@ namespace BookLover.WebAPI.Controllers
             return Ok(profileDisplay);
         }
 
+        [HttpGet]
+        [System.Web.Http.Route("api/GetsUserByUserId")]
+        public IHttpActionResult GetUserByUserId()
+        {
+            UserProfileService userProfileService = CreateUserProfileService();
+            UserProfileDisplay profileDisplay = userProfileService.GetUserByUserId();
+            return Ok(profileDisplay);
+        }
+
         [HttpPost]
         public IHttpActionResult PostUserProfile(UserProfileCreate model)
         {
