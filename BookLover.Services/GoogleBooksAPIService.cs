@@ -83,7 +83,7 @@ namespace BookLover.Services
         {
             SearchResult searchResult = SearchByTitleAndAuthor(title, authorName).Result;
 
-            if (searchResult.items.Count > 0)
+            if (searchResult.items != null)
             {
                 string bookId = searchResult.items[0].id;
                 GoogleBook book = GetBookByGoogleId(bookId).Result;
