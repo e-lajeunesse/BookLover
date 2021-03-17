@@ -1,4 +1,5 @@
 ﻿using BookLover.Data;
+using BookLover.Models;
 using BookLover.Models.BookshelfModels;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,10 @@ namespace BookLover.Services
                     {
                         BookId = b.BookId,
                         Title = b.Title,
+                        Author = new AuthorDisplayItem
+                        {
+                            FullName = b.Author.FirstName + " " + b.Author.LastName
+                        }
                     }).ToList()
                 }).ToList();
 
@@ -65,6 +70,10 @@ namespace BookLover.Services
                     {
                         BookId = b.BookId,
                         Title = b.Title,
+                        Author = new AuthorDisplayItem
+                        {
+                            FullName = b.Author.FirstName + " " + b.Author.LastName
+                        }
                     }).ToList()
                 }).ToList();
 
@@ -81,7 +90,11 @@ namespace BookLover.Services
                 Books = shelfToGet.Books.Select(b => new BookshelfBookDisplay
                 {
                     BookId = b.BookId,
-                    Title = b.Title
+                    Title = b.Title,
+                    Author = new AuthorDisplayItem
+                    {
+                        FullName = b.Author.FirstName + " " + b.Author.LastName
+                    }
                 }).ToList()
             };
 
