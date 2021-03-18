@@ -8,7 +8,7 @@ To make things a little easier and more fun to work with you can open the github
 https://github.com/e-lajeunesse/BookLoverUI
 [GitHub link for UI]
 
-This Postman link is a documented postman with endpoints and descriptions on how to test the endpoints. Once this link it opened it will prompt you to Add the collection BookLover to a workspace. If you already have a workspace created then you can add this collection to That workspace or create a new one. Once this is downloaded to a workspace you can run the project and start testing out the endpoints.
+This Postman link is a documented postman with endpoints and descriptions on how to test the endpoints. Once this link it opened it will prompt you to Add the collection BookLover to a workspace. If you already have a workspace created then you can add this collection to That workspace or create a new one. Once this is downloaded to a workspace you can run the project and start testing out the endpoints. This PostMan link has documentation on how to use this specific postman.
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/b2cb68fadd00a577a1ac)
 
 There is a Seed.txt file in the BookLover.Data project which can be used to Seed some authors and books into the database for testing purposes. To do this you will need to enable migrations in the Package Manager Console, then copy and paste the code from the Seed.txt file(starting at line 3) into the Configuration.cs file found in the Migrations folder and run the command update-database in the Package Manager Console. Note that this should be done before adding any other data or else the Foreign Keys for the books and authors in the Seed.txt file will be incorrect.  
