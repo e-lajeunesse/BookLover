@@ -27,9 +27,10 @@ namespace BookLover.Data
                     "Young Adult","Historical Fiction","Nonfiction", "Comedy", "Unavailable"};
             }
         }
-
-        //[MaxLength(500)]
+        
         public string Description { get; set; }
+
+
 
         public virtual List<BookReview> BookReviews { get; set; } 
         public virtual List<Bookshelf> Bookshelves { get; set; } 
