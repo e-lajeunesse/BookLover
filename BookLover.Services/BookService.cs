@@ -142,14 +142,42 @@ namespace BookLover.Services
 
         public List<BookListItem> SortBooksByRating()
         {
-            List<BookListItem> allBooks = _context.Books.Select(b => CreateBookListItem(b)).ToList();
+            List<BookListItem> allBooks = _context.Books.Select(b => new BookListItem 
+            {
+                BookId = b.BookId,
+                Title = b.Title,
+                Genre = b.Genre,
+                Description = b.Description,
+                AverageRating = b.BookReviews.Count > 0 ?
+                    b.BookReviews.Select(r => r.BookRating).Sum() / b.BookReviews.Count : 0,
+                ReviewCount = b.BookReviews.Count,
+                AuthorId = b.AuthorId,
+                Author = new AuthorDisplayItem
+                {
+                    FullName = b.Author.FirstName + " " + b.Author.LastName
+                }
+            }).ToList();
             List<BookListItem> sortedBooks = allBooks.OrderByDescending(b => b.AverageRating).ToList();
             return sortedBooks;
         }
 
         public List<BookListItem> SortByGenreAndRating()
         {
-            List<BookListItem> allBooks = _context.Books.Select(b => CreateBookListItem(b)).ToList();
+            List<BookListItem> allBooks = _context.Books.Select(b => new BookListItem 
+            {
+                BookId = b.BookId,
+                Title = b.Title,
+                Genre = b.Genre,
+                Description = b.Description,
+                AverageRating = b.BookReviews.Count > 0 ?
+                    b.BookReviews.Select(r => r.BookRating).Sum() / b.BookReviews.Count : 0,
+                ReviewCount = b.BookReviews.Count,
+                AuthorId = b.AuthorId,
+                Author = new AuthorDisplayItem
+                {
+                    FullName = b.Author.FirstName + " " + b.Author.LastName
+                }
+            }).ToList();
             List<BookListItem> sortedBooks = allBooks.OrderBy(b => b.Genre.ToLower())
                 .ThenByDescending(b => b.AverageRating).ToList();
             return sortedBooks;
